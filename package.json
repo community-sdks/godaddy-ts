@@ -1,6 +1,6 @@
 {
   "name": "@community-sdks/godaddy-ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fetch-based TypeScript SDK for the GoDaddy APIs in this repository.",
   "type": "module",
   "main": "./dist/index.js",
