@@ -1,13 +1,15 @@
 // @ts-nocheck
-import { ApiException } from '../apiException.js';
+import { ApiException, ApiExceptionDetails } from '../apiException.js';
 
 export class AbuseApiException extends ApiException {
-  constructor(message, details = {}, errorResponse = null) {
+  errorResponse: unknown | null;
+
+  constructor(message: string, details: ApiExceptionDetails = {}, errorResponse: unknown | null = null) {
     super(message, details);
     this.errorResponse = errorResponse;
   }
 
-  getErrorResponse() {
+  getErrorResponse(): unknown | null {
     return this.errorResponse;
   }
 }

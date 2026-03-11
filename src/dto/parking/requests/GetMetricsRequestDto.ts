@@ -1,8 +1,34 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface GetMetricsRequestDtoParams {
+  customerId?: string;
+  periodStartPtz?: string;
+  periodEndPtz?: string;
+  limit?: number;
+  offset?: number;
+  xRequestId?: string;
+}
+
+export interface GetMetricsRequestDtoPathParams {
+  [key: string]: unknown;
+}
+
+export interface GetMetricsRequestDtoQueryParams {
+  [key: string]: unknown;
+}
+
+export interface GetMetricsRequestDtoHeaders {
+  [key: string]: unknown;
+}
+
 export class GetMetricsRequestDto extends BaseRequestDto {
-  constructor({ customerId, periodStartPtz, periodEndPtz, limit, offset, xRequestId } = {}) {
+  customerId?: string;
+  periodStartPtz?: string;
+  periodEndPtz?: string;
+  limit?: number;
+  offset?: number;
+  xRequestId?: string;
+  constructor({ customerId, periodStartPtz, periodEndPtz, limit, offset, xRequestId }: GetMetricsRequestDtoParams = {}) {
     super();
     this.customerId = customerId;
     this.periodStartPtz = periodStartPtz;
@@ -11,14 +37,12 @@ export class GetMetricsRequestDto extends BaseRequestDto {
     this.offset = offset;
     this.xRequestId = xRequestId;
   }
-
-  toPathParams() {
+  toPathParams(): GetMetricsRequestDtoPathParams {
     return {
       customerId: this.customerId,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): GetMetricsRequestDtoQueryParams {
     return {
       periodStartPtz: this.periodStartPtz,
       periodEndPtz: this.periodEndPtz,
@@ -26,18 +50,15 @@ export class GetMetricsRequestDto extends BaseRequestDto {
       offset: this.offset,
     };
   }
-
-  toHeaders() {
+  toHeaders(): GetMetricsRequestDtoHeaders {
     return {
       'X-Request-Id': this.xRequestId,
     };
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

@@ -1,10 +1,14 @@
-// @ts-nocheck
 import { BaseResponseDto } from '../../baseResponseDto.js';
 
+export interface AbuseTicketIdResponseData {
+  u_number?: string;
+}
+
 export class AbuseTicketIdResponse extends BaseResponseDto {
-  constructor(raw = null) {
+  u_number?: string;
+  constructor(raw: unknown = null) {
     super(raw);
-    const source = raw && typeof raw === 'object' ? raw : {};
+    const source: AbuseTicketIdResponseData = raw && typeof raw === 'object' ? (raw as AbuseTicketIdResponseData) : {};
     this.u_number = source.u_number;
   }
 }

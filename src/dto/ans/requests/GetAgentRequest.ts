@@ -1,31 +1,42 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface GetAgentRequestParams {
+  agentId?: string;
+}
+
+export interface GetAgentRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface GetAgentRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface GetAgentRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class GetAgentRequest extends BaseRequestDto {
-  constructor({ agentId } = {}) {
+  agentId?: string;
+  constructor({ agentId }: GetAgentRequestParams = {}) {
     super();
     this.agentId = agentId;
   }
-
-  toPathParams() {
+  toPathParams(): GetAgentRequestPathParams {
     return {
       agentId: this.agentId,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): GetAgentRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): GetAgentRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

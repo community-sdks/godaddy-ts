@@ -1,10 +1,18 @@
-// @ts-nocheck
 import { BaseResponseDto } from '../../baseResponseDto.js';
 
+export interface CertificateAcmeExternalAccountBindingResponseData {
+  directoryUrl?: string;
+  keyId?: string;
+  hmacKey?: string;
+}
+
 export class CertificateAcmeExternalAccountBindingResponse extends BaseResponseDto {
-  constructor(raw = null) {
+  directoryUrl?: string;
+  keyId?: string;
+  hmacKey?: string;
+  constructor(raw: unknown = null) {
     super(raw);
-    const source = raw && typeof raw === 'object' ? raw : {};
+    const source: CertificateAcmeExternalAccountBindingResponseData = raw && typeof raw === 'object' ? (raw as CertificateAcmeExternalAccountBindingResponseData) : {};
     this.directoryUrl = source.directoryUrl;
     this.keyId = source.keyId;
     this.hmacKey = source.hmacKey;

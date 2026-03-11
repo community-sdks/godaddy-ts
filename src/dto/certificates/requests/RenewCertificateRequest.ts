@@ -1,32 +1,47 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export type RenewCertificateRequestRenewCreateType = Record<string, unknown>;
+
+export interface RenewCertificateRequestParams {
+  certificateId?: string;
+  renewCreate?: RenewCertificateRequestRenewCreateType;
+}
+
+export interface RenewCertificateRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface RenewCertificateRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface RenewCertificateRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class RenewCertificateRequest extends BaseRequestDto {
-  constructor({ certificateId, renewCreate } = {}) {
+  certificateId?: string;
+  renewCreate?: RenewCertificateRequestRenewCreateType;
+  constructor({ certificateId, renewCreate }: RenewCertificateRequestParams = {}) {
     super();
     this.certificateId = certificateId;
     this.renewCreate = renewCreate;
   }
-
-  toPathParams() {
+  toPathParams(): RenewCertificateRequestPathParams {
     return {
       certificateId: this.certificateId,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): RenewCertificateRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): RenewCertificateRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return this.renewCreate;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

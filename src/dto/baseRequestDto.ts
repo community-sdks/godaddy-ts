@@ -1,34 +1,33 @@
-// @ts-nocheck
 export class BaseRequestDto {
-  static from(value) {
+  static from<TDto extends BaseRequestDto>(this: new (...args: any[]) => TDto, value: unknown): TDto {
     if (value instanceof this) {
       return value;
     }
 
     if (value && typeof value === 'object') {
-      return new this(value);
+      return new this(value as any);
     }
 
     return new this();
   }
 
-  toPathParams() {
+  toPathParams(): Record<string, unknown> {
     return {};
   }
 
-  toQueryParams() {
+  toQueryParams(): Record<string, unknown> {
     return {};
   }
 
-  toHeaders() {
+  toHeaders(): Record<string, unknown> {
     return {};
   }
 
-  toBody() {
+  toBody(): unknown {
     return null;
   }
 
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

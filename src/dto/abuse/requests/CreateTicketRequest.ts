@@ -1,29 +1,42 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export type CreateTicketRequestBody = Record<string, unknown>;
+
+export interface CreateTicketRequestParams {
+  body?: CreateTicketRequestBody;
+}
+
+export interface CreateTicketRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface CreateTicketRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface CreateTicketRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class CreateTicketRequest extends BaseRequestDto {
-  constructor({ body } = {}) {
+  body?: CreateTicketRequestBody;
+  constructor({ body }: CreateTicketRequestParams = {}) {
     super();
     this.body = body;
   }
-
-  toPathParams() {
+  toPathParams(): CreateTicketRequestPathParams {
     return {};
   }
-
-  toQueryParams() {
+  toQueryParams(): CreateTicketRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): CreateTicketRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return this.body;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

@@ -1,35 +1,52 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export type DomainBodyRequestBodyType = Record<string, unknown>;
+
+export interface DomainBodyRequestParams {
+  domain?: string;
+  body?: DomainBodyRequestBodyType;
+  xShopperId?: string;
+}
+
+export interface DomainBodyRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface DomainBodyRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface DomainBodyRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class DomainBodyRequest extends BaseRequestDto {
-  constructor({ domain, body, xShopperId } = {}) {
+  domain?: string;
+  body?: DomainBodyRequestBodyType;
+  xShopperId?: string;
+  constructor({ domain, body, xShopperId }: DomainBodyRequestParams = {}) {
     super();
     this.domain = domain;
     this.body = body;
     this.xShopperId = xShopperId;
   }
-
-  toPathParams() {
+  toPathParams(): DomainBodyRequestPathParams {
     return {
       domain: this.domain,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): DomainBodyRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): DomainBodyRequestHeaders {
     return {
       'X-Shopper-Id': this.xShopperId,
     };
   }
-
-  toBody() {
+  toBody(): unknown {
     return this.body;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

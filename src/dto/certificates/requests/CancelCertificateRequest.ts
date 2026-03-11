@@ -1,31 +1,42 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface CancelCertificateRequestParams {
+  certificateId?: string;
+}
+
+export interface CancelCertificateRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface CancelCertificateRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface CancelCertificateRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class CancelCertificateRequest extends BaseRequestDto {
-  constructor({ certificateId } = {}) {
+  certificateId?: string;
+  constructor({ certificateId }: CancelCertificateRequestParams = {}) {
     super();
     this.certificateId = certificateId;
   }
-
-  toPathParams() {
+  toPathParams(): CancelCertificateRequestPathParams {
     return {
       certificateId: this.certificateId,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): CancelCertificateRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): CancelCertificateRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

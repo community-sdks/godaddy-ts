@@ -4,23 +4,139 @@ Client accessor: `client.subscriptions()`
 
 ## Method Index
 
-- `list`: `ListRequestDto` -> `ListResponseDto`
-- `productGroups`: `ProductGroupsRequestDto` -> `ProductGroupsResponseDto`
-- `cancel`: `CancelRequestDto` -> `CancelResponseDto`
-- `get`: `GetRequestDto` -> `GetResponseDto`
-- `update`: `UpdateRequestDto` -> `UpdateResponseDto`
+- [`list`](#list): `ListResponseDto`
+- [`productGroups`](#productgroups): `ProductGroupsResponseDto`
+- [`cancel`](#cancel): `CancelResponseDto`
+- [`get`](#get): `GetResponseDto`
+- [`update`](#update): `UpdateResponseDto`
 
-## Usage
+## Methods
 
-```js
-import { Client, Config } from '../src/index.js';
-import { ListRequestDto } from '../src/index.js';
+### list
+
+Returns: `ListResponseDto`
+
+Request code:
+
+```ts
+import { Client, Config, ListRequestDto } from '@community-sdks/godaddy-ts';
 
 const client = new Client(new Config({ apiKey: 'your-key', apiSecret: 'your-secret' }));
 const response = await client.subscriptions().list(new ListRequestDto());
-console.log(response.raw);
 ```
 
-## Response Shape
+Response JSON example:
 
-All response DTOs extend `BaseResponseDto` and expose the decoded payload in `.raw`.
+```json
+{
+  "subscriptions": [
+    {
+      "subscriptionId": "sub_123456",
+      "status": "ACTIVE",
+      "renewAuto": true
+    }
+  ],
+  "pagination": {
+    "total": 1,
+    "next": null
+  }
+}
+```
+
+### productGroups
+
+Returns: `ProductGroupsResponseDto`
+
+Request code:
+
+```ts
+import { Client, Config, ProductGroupsRequestDto } from '@community-sdks/godaddy-ts';
+
+const client = new Client(new Config({ apiKey: 'your-key', apiSecret: 'your-secret' }));
+const response = await client.subscriptions().productGroups(new ProductGroupsRequestDto());
+```
+
+Response JSON example:
+
+```json
+{
+  "productGroups": [
+    {
+      "productGroupKey": "domains",
+      "subscriptionCount": 1
+    }
+  ]
+}
+```
+
+### cancel
+
+Returns: `CancelResponseDto`
+
+Request code:
+
+```ts
+import { Client, Config, CancelRequestDto } from '@community-sdks/godaddy-ts';
+
+const client = new Client(new Config({ apiKey: 'your-key', apiSecret: 'your-secret' }));
+const response = await client.subscriptions().cancel(new CancelRequestDto());
+```
+
+Response JSON example:
+
+```json
+{
+  "subscriptionId": "sub_123456",
+  "status": "CANCELLED"
+}
+```
+
+### get
+
+Returns: `GetResponseDto`
+
+Request code:
+
+```ts
+import { Client, Config, GetRequestDto } from '@community-sdks/godaddy-ts';
+
+const client = new Client(new Config({ apiKey: 'your-key', apiSecret: 'your-secret' }));
+const response = await client.subscriptions().get(new GetRequestDto());
+```
+
+Response JSON example:
+
+```json
+{
+  "subscriptionId": "sub_123456",
+  "status": "ACTIVE",
+  "label": "My Subscription",
+  "renewAuto": true
+}
+```
+
+### update
+
+Returns: `UpdateResponseDto`
+
+Request code:
+
+```ts
+import { Client, Config, UpdateRequestDto } from '@community-sdks/godaddy-ts';
+
+const client = new Client(new Config({ apiKey: 'your-key', apiSecret: 'your-secret' }));
+const response = await client.subscriptions().update(new UpdateRequestDto());
+```
+
+Response JSON example:
+
+```json
+{
+  "subscriptionId": "sub_123456",
+  "status": "ACTIVE"
+}
+```
+
+## Exceptions
+
+Service-specific exceptions are under `src/errors/subscriptions/*` and expose `getErrorResponse()`.

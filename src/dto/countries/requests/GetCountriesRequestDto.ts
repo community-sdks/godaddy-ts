@@ -1,31 +1,42 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface GetCountriesRequestDtoParams {
+  marketId?: string;
+}
+
+export interface GetCountriesRequestDtoPathParams {
+  [key: string]: unknown;
+}
+
+export interface GetCountriesRequestDtoQueryParams {
+  [key: string]: unknown;
+}
+
+export interface GetCountriesRequestDtoHeaders {
+  [key: string]: unknown;
+}
+
 export class GetCountriesRequestDto extends BaseRequestDto {
-  constructor({ marketId } = {}) {
+  marketId?: string;
+  constructor({ marketId }: GetCountriesRequestDtoParams = {}) {
     super();
     this.marketId = marketId;
   }
-
-  toPathParams() {
+  toPathParams(): GetCountriesRequestDtoPathParams {
     return {};
   }
-
-  toQueryParams() {
+  toQueryParams(): GetCountriesRequestDtoQueryParams {
     return {
       marketId: this.marketId,
     };
   }
-
-  toHeaders() {
+  toHeaders(): GetCountriesRequestDtoHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

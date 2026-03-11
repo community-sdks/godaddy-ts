@@ -1,31 +1,42 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface DownloadCertificateRequestParams {
+  certificateId?: string;
+}
+
+export interface DownloadCertificateRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface DownloadCertificateRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface DownloadCertificateRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class DownloadCertificateRequest extends BaseRequestDto {
-  constructor({ certificateId } = {}) {
+  certificateId?: string;
+  constructor({ certificateId }: DownloadCertificateRequestParams = {}) {
     super();
     this.certificateId = certificateId;
   }
-
-  toPathParams() {
+  toPathParams(): DownloadCertificateRequestPathParams {
     return {
       certificateId: this.certificateId,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): DownloadCertificateRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): DownloadCertificateRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

@@ -1,34 +1,47 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface GetRequestDtoParams {
+  shopperId?: unknown;
+  includes?: unknown;
+}
+
+export interface GetRequestDtoPathParams {
+  [key: string]: unknown;
+}
+
+export interface GetRequestDtoQueryParams {
+  [key: string]: unknown;
+}
+
+export interface GetRequestDtoHeaders {
+  [key: string]: unknown;
+}
+
 export class GetRequestDto extends BaseRequestDto {
-  constructor({ shopperId, includes } = {}) {
+  shopperId?: unknown;
+  includes?: unknown;
+  constructor({ shopperId, includes }: GetRequestDtoParams = {}) {
     super();
     this.shopperId = shopperId;
     this.includes = includes;
   }
-
-  toPathParams() {
+  toPathParams(): GetRequestDtoPathParams {
     return {
       shopperId: this.shopperId,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): GetRequestDtoQueryParams {
     return {
       includes: this.includes,
     };
   }
-
-  toHeaders() {
+  toHeaders(): GetRequestDtoHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

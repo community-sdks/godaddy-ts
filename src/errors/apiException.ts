@@ -1,6 +1,20 @@
 // @ts-nocheck
+export interface ApiExceptionDetails {
+  statusCode?: number;
+  responseBody?: string;
+  headers?: Record<string, string>;
+  requestMethod?: string;
+  requestUrl?: string;
+}
+
 export class ApiException extends Error {
-  constructor(message, { statusCode, responseBody, headers, requestMethod, requestUrl } = {}) {
+  statusCode: number;
+  responseBody: string;
+  headers: Record<string, string>;
+  requestMethod: string;
+  requestUrl: string;
+
+  constructor(message: string, { statusCode, responseBody, headers, requestMethod, requestUrl }: ApiExceptionDetails = {}) {
     super(message);
     this.name = this.constructor.name;
     this.statusCode = statusCode ?? 0;
@@ -10,7 +24,7 @@ export class ApiException extends Error {
     this.requestUrl = requestUrl ?? '';
   }
 
-  getRequestId() {
+  getRequestId(): string | null {
     return this.headers['X-Request-Id'] ?? this.headers['x-request-id'] ?? null;
   }
 }

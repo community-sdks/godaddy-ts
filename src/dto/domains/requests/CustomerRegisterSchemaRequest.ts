@@ -1,36 +1,51 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface CustomerRegisterSchemaRequestParams {
+  customerId?: string;
+  tld?: string;
+  xRequestId?: string;
+}
+
+export interface CustomerRegisterSchemaRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface CustomerRegisterSchemaRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface CustomerRegisterSchemaRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class CustomerRegisterSchemaRequest extends BaseRequestDto {
-  constructor({ customerId, tld, xRequestId } = {}) {
+  customerId?: string;
+  tld?: string;
+  xRequestId?: string;
+  constructor({ customerId, tld, xRequestId }: CustomerRegisterSchemaRequestParams = {}) {
     super();
     this.customerId = customerId;
     this.tld = tld;
     this.xRequestId = xRequestId;
   }
-
-  toPathParams() {
+  toPathParams(): CustomerRegisterSchemaRequestPathParams {
     return {
       customerId: this.customerId,
       tld: this.tld,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): CustomerRegisterSchemaRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): CustomerRegisterSchemaRequestHeaders {
     return {
       'X-Request-Id': this.xRequestId,
     };
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

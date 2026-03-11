@@ -1,4 +1,3 @@
-// @ts-nocheck
 export { GetTicketsRequest } from './GetTicketsRequest.js';
 export { CreateTicketRequest } from './CreateTicketRequest.js';
 export { GetTicketInfoRequest } from './GetTicketInfoRequest.js';

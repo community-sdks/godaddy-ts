@@ -1,31 +1,42 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface GetCertificateCallbackRequestParams {
+  certificateId?: string;
+}
+
+export interface GetCertificateCallbackRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface GetCertificateCallbackRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface GetCertificateCallbackRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class GetCertificateCallbackRequest extends BaseRequestDto {
-  constructor({ certificateId } = {}) {
+  certificateId?: string;
+  constructor({ certificateId }: GetCertificateCallbackRequestParams = {}) {
     super();
     this.certificateId = certificateId;
   }
-
-  toPathParams() {
+  toPathParams(): GetCertificateCallbackRequestPathParams {
     return {
       certificateId: this.certificateId,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): GetCertificateCallbackRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): GetCertificateCallbackRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

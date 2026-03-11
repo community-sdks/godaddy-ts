@@ -1,31 +1,42 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface VerifyDnsRequestParams {
+  agentId?: string;
+}
+
+export interface VerifyDnsRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface VerifyDnsRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface VerifyDnsRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class VerifyDnsRequest extends BaseRequestDto {
-  constructor({ agentId } = {}) {
+  agentId?: string;
+  constructor({ agentId }: VerifyDnsRequestParams = {}) {
     super();
     this.agentId = agentId;
   }
-
-  toPathParams() {
+  toPathParams(): VerifyDnsRequestPathParams {
     return {
       agentId: this.agentId,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): VerifyDnsRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): VerifyDnsRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

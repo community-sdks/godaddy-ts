@@ -7,8 +7,8 @@
     "outDir": "dist",
     "declaration": true,
     "sourceMap": true,
-    "strict": false,
-    "noImplicitAny": false,
+    "strict": true,
+    "noImplicitAny": true,
     "useDefineForClassFields": false,
     "esModuleInterop": true,
     "skipLibCheck": true

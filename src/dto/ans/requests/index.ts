@@ -1,4 +1,3 @@
-// @ts-nocheck
 export { SearchAgentsRequest } from './SearchAgentsRequest.js';
 export { RegisterAgentRequest } from './RegisterAgentRequest.js';
 export { ResolveAgentRequest } from './ResolveAgentRequest.js';

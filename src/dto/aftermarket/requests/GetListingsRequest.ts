@@ -1,8 +1,40 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export enum GetListingsRequestListingStatusEnum {
+  FULFILLED = "FULFILLED",
+}
+
+export interface GetListingsRequestParams {
+  customerId?: string;
+  domains?: string;
+  listingStatus?: GetListingsRequestListingStatusEnum;
+  transferBefore?: string;
+  transferAfter?: string;
+  limit?: number;
+  offset?: number;
+}
+
+export interface GetListingsRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface GetListingsRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface GetListingsRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class GetListingsRequest extends BaseRequestDto {
-  constructor({ customerId, domains, listingStatus, transferBefore, transferAfter, limit, offset } = {}) {
+  customerId?: string;
+  domains?: string;
+  listingStatus?: GetListingsRequestListingStatusEnum;
+  transferBefore?: string;
+  transferAfter?: string;
+  limit?: number;
+  offset?: number;
+  constructor({ customerId, domains, listingStatus, transferBefore, transferAfter, limit, offset }: GetListingsRequestParams = {}) {
     super();
     this.customerId = customerId;
     this.domains = domains;
@@ -12,14 +44,12 @@ export class GetListingsRequest extends BaseRequestDto {
     this.limit = limit;
     this.offset = offset;
   }
-
-  toPathParams() {
+  toPathParams(): GetListingsRequestPathParams {
     return {
       customerId: this.customerId,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): GetListingsRequestQueryParams {
     return {
       domains: this.domains,
       listingStatus: this.listingStatus,
@@ -29,16 +59,13 @@ export class GetListingsRequest extends BaseRequestDto {
       offset: this.offset,
     };
   }
-
-  toHeaders() {
+  toHeaders(): GetListingsRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

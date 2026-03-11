@@ -1,29 +1,42 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export type DomainValidateRequestBodyType = Record<string, unknown>;
+
+export interface DomainValidateRequestParams {
+  body?: DomainValidateRequestBodyType;
+}
+
+export interface DomainValidateRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface DomainValidateRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface DomainValidateRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class DomainValidateRequest extends BaseRequestDto {
-  constructor({ body } = {}) {
+  body?: DomainValidateRequestBodyType;
+  constructor({ body }: DomainValidateRequestParams = {}) {
     super();
     this.body = body;
   }
-
-  toPathParams() {
+  toPathParams(): DomainValidateRequestPathParams {
     return {};
   }
-
-  toQueryParams() {
+  toQueryParams(): DomainValidateRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): DomainValidateRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return this.body;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

@@ -1,31 +1,42 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface DomainPathRequestParams {
+  domain?: string;
+}
+
+export interface DomainPathRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface DomainPathRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface DomainPathRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class DomainPathRequest extends BaseRequestDto {
-  constructor({ domain } = {}) {
+  domain?: string;
+  constructor({ domain }: DomainPathRequestParams = {}) {
     super();
     this.domain = domain;
   }
-
-  toPathParams() {
+  toPathParams(): DomainPathRequestPathParams {
     return {
       domain: this.domain,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): DomainPathRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): DomainPathRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

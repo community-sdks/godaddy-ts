@@ -1,8 +1,40 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface GetMetricsByDomainRequestDtoParams {
+  customerId?: string;
+  startDate?: string;
+  endDate?: string;
+  domains?: string;
+  domainLike?: string;
+  portfolioId?: string;
+  limit?: number;
+  offset?: number;
+  xRequestId?: string;
+}
+
+export interface GetMetricsByDomainRequestDtoPathParams {
+  [key: string]: unknown;
+}
+
+export interface GetMetricsByDomainRequestDtoQueryParams {
+  [key: string]: unknown;
+}
+
+export interface GetMetricsByDomainRequestDtoHeaders {
+  [key: string]: unknown;
+}
+
 export class GetMetricsByDomainRequestDto extends BaseRequestDto {
-  constructor({ customerId, startDate, endDate, domains, domainLike, portfolioId, limit, offset, xRequestId } = {}) {
+  customerId?: string;
+  startDate?: string;
+  endDate?: string;
+  domains?: string;
+  domainLike?: string;
+  portfolioId?: string;
+  limit?: number;
+  offset?: number;
+  xRequestId?: string;
+  constructor({ customerId, startDate, endDate, domains, domainLike, portfolioId, limit, offset, xRequestId }: GetMetricsByDomainRequestDtoParams = {}) {
     super();
     this.customerId = customerId;
     this.startDate = startDate;
@@ -14,14 +46,12 @@ export class GetMetricsByDomainRequestDto extends BaseRequestDto {
     this.offset = offset;
     this.xRequestId = xRequestId;
   }
-
-  toPathParams() {
+  toPathParams(): GetMetricsByDomainRequestDtoPathParams {
     return {
       customerId: this.customerId,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): GetMetricsByDomainRequestDtoQueryParams {
     return {
       startDate: this.startDate,
       endDate: this.endDate,
@@ -32,18 +62,15 @@ export class GetMetricsByDomainRequestDto extends BaseRequestDto {
       offset: this.offset,
     };
   }
-
-  toHeaders() {
+  toHeaders(): GetMetricsByDomainRequestDtoHeaders {
     return {
       'X-Request-Id': this.xRequestId,
     };
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

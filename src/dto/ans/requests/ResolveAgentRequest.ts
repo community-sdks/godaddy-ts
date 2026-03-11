@@ -1,29 +1,42 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export type ResolveAgentRequestBodyType = Record<string, unknown>;
+
+export interface ResolveAgentRequestParams {
+  body?: ResolveAgentRequestBodyType;
+}
+
+export interface ResolveAgentRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface ResolveAgentRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface ResolveAgentRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class ResolveAgentRequest extends BaseRequestDto {
-  constructor({ body } = {}) {
+  body?: ResolveAgentRequestBodyType;
+  constructor({ body }: ResolveAgentRequestParams = {}) {
     super();
     this.body = body;
   }
-
-  toPathParams() {
+  toPathParams(): ResolveAgentRequestPathParams {
     return {};
   }
-
-  toQueryParams() {
+  toQueryParams(): ResolveAgentRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): ResolveAgentRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return this.body;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

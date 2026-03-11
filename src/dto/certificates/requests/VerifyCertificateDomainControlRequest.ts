@@ -1,31 +1,42 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface VerifyCertificateDomainControlRequestParams {
+  certificateId?: string;
+}
+
+export interface VerifyCertificateDomainControlRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface VerifyCertificateDomainControlRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface VerifyCertificateDomainControlRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class VerifyCertificateDomainControlRequest extends BaseRequestDto {
-  constructor({ certificateId } = {}) {
+  certificateId?: string;
+  constructor({ certificateId }: VerifyCertificateDomainControlRequestParams = {}) {
     super();
     this.certificateId = certificateId;
   }
-
-  toPathParams() {
+  toPathParams(): VerifyCertificateDomainControlRequestPathParams {
     return {
       certificateId: this.certificateId,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): VerifyCertificateDomainControlRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): VerifyCertificateDomainControlRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

@@ -1,29 +1,42 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export type RegisterAgentRequestBodyType = Record<string, unknown>;
+
+export interface RegisterAgentRequestParams {
+  body?: RegisterAgentRequestBodyType;
+}
+
+export interface RegisterAgentRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface RegisterAgentRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface RegisterAgentRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class RegisterAgentRequest extends BaseRequestDto {
-  constructor({ body } = {}) {
+  body?: RegisterAgentRequestBodyType;
+  constructor({ body }: RegisterAgentRequestParams = {}) {
     super();
     this.body = body;
   }
-
-  toPathParams() {
+  toPathParams(): RegisterAgentRequestPathParams {
     return {};
   }
-
-  toQueryParams() {
+  toQueryParams(): RegisterAgentRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): RegisterAgentRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return this.body;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

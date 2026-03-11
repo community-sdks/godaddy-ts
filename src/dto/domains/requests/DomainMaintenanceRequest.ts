@@ -1,34 +1,47 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface DomainMaintenanceRequestParams {
+  maintenanceId?: string;
+  xRequestId?: string;
+}
+
+export interface DomainMaintenanceRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface DomainMaintenanceRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface DomainMaintenanceRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class DomainMaintenanceRequest extends BaseRequestDto {
-  constructor({ maintenanceId, xRequestId } = {}) {
+  maintenanceId?: string;
+  xRequestId?: string;
+  constructor({ maintenanceId, xRequestId }: DomainMaintenanceRequestParams = {}) {
     super();
     this.maintenanceId = maintenanceId;
     this.xRequestId = xRequestId;
   }
-
-  toPathParams() {
+  toPathParams(): DomainMaintenanceRequestPathParams {
     return {
       maintenanceId: this.maintenanceId,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): DomainMaintenanceRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): DomainMaintenanceRequestHeaders {
     return {
       'X-Request-Id': this.xRequestId,
     };
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

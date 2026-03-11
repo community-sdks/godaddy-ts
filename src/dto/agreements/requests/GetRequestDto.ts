@@ -1,36 +1,51 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface GetRequestDtoParams {
+  keys?: unknown;
+  xPrivateLabelId?: unknown;
+  xMarketId?: unknown;
+}
+
+export interface GetRequestDtoPathParams {
+  [key: string]: unknown;
+}
+
+export interface GetRequestDtoQueryParams {
+  [key: string]: unknown;
+}
+
+export interface GetRequestDtoHeaders {
+  [key: string]: unknown;
+}
+
 export class GetRequestDto extends BaseRequestDto {
-  constructor({ keys, xPrivateLabelId, xMarketId } = {}) {
+  keys?: unknown;
+  xPrivateLabelId?: unknown;
+  xMarketId?: unknown;
+  constructor({ keys, xPrivateLabelId, xMarketId }: GetRequestDtoParams = {}) {
     super();
     this.keys = keys;
     this.xPrivateLabelId = xPrivateLabelId;
     this.xMarketId = xMarketId;
   }
-
-  toPathParams() {
+  toPathParams(): GetRequestDtoPathParams {
     return {};
   }
-
-  toQueryParams() {
+  toQueryParams(): GetRequestDtoQueryParams {
     return {
       keys: this.keys,
     };
   }
-
-  toHeaders() {
+  toHeaders(): GetRequestDtoHeaders {
     return {
       'X-Private-Label-Id': this.xPrivateLabelId,
       'X-Market-Id': this.xMarketId,
     };
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

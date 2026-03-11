@@ -1,8 +1,40 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export enum SearchAgentsRequestProtocolEnum {
+  MCP = "MCP",
+  A2A = "A2A",
+  HTTP_API = "HTTP-API",
+}
+
+export interface SearchAgentsRequestParams {
+  agentDisplayName?: string;
+  version?: string;
+  agentHost?: string;
+  protocol?: SearchAgentsRequestProtocolEnum;
+  limit?: number;
+  offset?: number;
+}
+
+export interface SearchAgentsRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface SearchAgentsRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface SearchAgentsRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class SearchAgentsRequest extends BaseRequestDto {
-  constructor({ agentDisplayName, version, agentHost, protocol, limit, offset } = {}) {
+  agentDisplayName?: string;
+  version?: string;
+  agentHost?: string;
+  protocol?: SearchAgentsRequestProtocolEnum;
+  limit?: number;
+  offset?: number;
+  constructor({ agentDisplayName, version, agentHost, protocol, limit, offset }: SearchAgentsRequestParams = {}) {
     super();
     this.agentDisplayName = agentDisplayName;
     this.version = version;
@@ -11,12 +43,10 @@ export class SearchAgentsRequest extends BaseRequestDto {
     this.limit = limit;
     this.offset = offset;
   }
-
-  toPathParams() {
+  toPathParams(): SearchAgentsRequestPathParams {
     return {};
   }
-
-  toQueryParams() {
+  toQueryParams(): SearchAgentsRequestQueryParams {
     return {
       agentDisplayName: this.agentDisplayName,
       version: this.version,
@@ -26,16 +56,13 @@ export class SearchAgentsRequest extends BaseRequestDto {
       offset: this.offset,
     };
   }
-
-  toHeaders() {
+  toHeaders(): SearchAgentsRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

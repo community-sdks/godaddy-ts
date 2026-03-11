@@ -1,33 +1,46 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface GetCsrStatusRequestParams {
+  agentId?: string;
+  csrId?: string;
+}
+
+export interface GetCsrStatusRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface GetCsrStatusRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface GetCsrStatusRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class GetCsrStatusRequest extends BaseRequestDto {
-  constructor({ agentId, csrId } = {}) {
+  agentId?: string;
+  csrId?: string;
+  constructor({ agentId, csrId }: GetCsrStatusRequestParams = {}) {
     super();
     this.agentId = agentId;
     this.csrId = csrId;
   }
-
-  toPathParams() {
+  toPathParams(): GetCsrStatusRequestPathParams {
     return {
       agentId: this.agentId,
       csrId: this.csrId,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): GetCsrStatusRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): GetCsrStatusRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

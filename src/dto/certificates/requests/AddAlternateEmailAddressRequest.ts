@@ -1,33 +1,46 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface AddAlternateEmailAddressRequestParams {
+  certificateId?: string;
+  emailAddress?: string;
+}
+
+export interface AddAlternateEmailAddressRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface AddAlternateEmailAddressRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface AddAlternateEmailAddressRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class AddAlternateEmailAddressRequest extends BaseRequestDto {
-  constructor({ certificateId, emailAddress } = {}) {
+  certificateId?: string;
+  emailAddress?: string;
+  constructor({ certificateId, emailAddress }: AddAlternateEmailAddressRequestParams = {}) {
     super();
     this.certificateId = certificateId;
     this.emailAddress = emailAddress;
   }
-
-  toPathParams() {
+  toPathParams(): AddAlternateEmailAddressRequestPathParams {
     return {
       certificateId: this.certificateId,
       emailAddress: this.emailAddress,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): AddAlternateEmailAddressRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): AddAlternateEmailAddressRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

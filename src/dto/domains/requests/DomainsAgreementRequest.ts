@@ -1,38 +1,55 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface DomainsAgreementRequestParams {
+  tlds?: Array<string>;
+  privacy?: boolean;
+  xMarketId?: string;
+  forTransfer?: boolean;
+}
+
+export interface DomainsAgreementRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface DomainsAgreementRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface DomainsAgreementRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class DomainsAgreementRequest extends BaseRequestDto {
-  constructor({ tlds, privacy, xMarketId, forTransfer } = {}) {
+  tlds?: Array<string>;
+  privacy?: boolean;
+  xMarketId?: string;
+  forTransfer?: boolean;
+  constructor({ tlds, privacy, xMarketId, forTransfer }: DomainsAgreementRequestParams = {}) {
     super();
     this.tlds = tlds;
     this.privacy = privacy;
     this.xMarketId = xMarketId;
     this.forTransfer = forTransfer;
   }
-
-  toPathParams() {
+  toPathParams(): DomainsAgreementRequestPathParams {
     return {};
   }
-
-  toQueryParams() {
+  toQueryParams(): DomainsAgreementRequestQueryParams {
     return {
       tlds: this.tlds,
       privacy: this.privacy,
       forTransfer: this.forTransfer,
     };
   }
-
-  toHeaders() {
+  toHeaders(): DomainsAgreementRequestHeaders {
     return {
       'X-Market-Id': this.xMarketId,
     };
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

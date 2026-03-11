@@ -1,31 +1,42 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface GetAcmeExternalAccountBindingRequestParams {
+  customerId?: unknown;
+}
+
+export interface GetAcmeExternalAccountBindingRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface GetAcmeExternalAccountBindingRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface GetAcmeExternalAccountBindingRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class GetAcmeExternalAccountBindingRequest extends BaseRequestDto {
-  constructor({ customerId } = {}) {
+  customerId?: unknown;
+  constructor({ customerId }: GetAcmeExternalAccountBindingRequestParams = {}) {
     super();
     this.customerId = customerId;
   }
-
-  toPathParams() {
+  toPathParams(): GetAcmeExternalAccountBindingRequestPathParams {
     return {
       customerId: this.customerId,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): GetAcmeExternalAccountBindingRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): GetAcmeExternalAccountBindingRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

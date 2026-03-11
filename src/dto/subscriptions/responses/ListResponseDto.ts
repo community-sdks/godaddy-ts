@@ -1,10 +1,18 @@
-// @ts-nocheck
 import { BaseResponseDto } from '../../baseResponseDto.js';
 
+export type ListResponseDtoPaginationType = Record<string, unknown>;
+
+export interface ListResponseDtoData {
+  orders?: Array<Record<string, unknown>>;
+  pagination?: ListResponseDtoPaginationType;
+}
+
 export class ListResponseDto extends BaseResponseDto {
-  constructor(raw = null) {
+  orders?: Array<Record<string, unknown>>;
+  pagination?: ListResponseDtoPaginationType;
+  constructor(raw: unknown = null) {
     super(raw);
-    const source = raw && typeof raw === 'object' ? raw : {};
+    const source: ListResponseDtoData = raw && typeof raw === 'object' ? (raw as ListResponseDtoData) : {};
     this.orders = source.orders;
     this.pagination = source.pagination;
   }

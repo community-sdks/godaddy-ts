@@ -1,9 +1,11 @@
-// @ts-nocheck
 import { BaseResponseDto } from '../../baseResponseDto.js';
 
+export type DomainTldListResponseData = Array<Record<string, unknown>>;
+
 export class DomainTldListResponse extends BaseResponseDto {
-  constructor(raw = null) {
+  items: DomainTldListResponseData;
+  constructor(raw: unknown = null) {
     super(raw);
-    this.items = Array.isArray(raw) ? raw : [];
+    this.items = Array.isArray(raw) ? (raw as DomainTldListResponseData) : [];
   }
 }

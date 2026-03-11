@@ -1,10 +1,20 @@
-// @ts-nocheck
 import { BaseResponseDto } from '../../baseResponseDto.js';
 
+export interface DomainTransferResponseData {
+  currency?: string;
+  itemCount?: number;
+  orderId?: number;
+  total?: number;
+}
+
 export class DomainTransferResponse extends BaseResponseDto {
-  constructor(raw = null) {
+  currency?: string;
+  itemCount?: number;
+  orderId?: number;
+  total?: number;
+  constructor(raw: unknown = null) {
     super(raw);
-    const source = raw && typeof raw === 'object' ? raw : {};
+    const source: DomainTransferResponseData = raw && typeof raw === 'object' ? (raw as DomainTransferResponseData) : {};
     this.currency = source.currency;
     this.itemCount = source.itemCount;
     this.orderId = source.orderId;

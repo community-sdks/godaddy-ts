@@ -1,8 +1,36 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface ListSubscriptionCertificatesRequestParams {
+  guid?: unknown;
+  pageSize?: unknown;
+  page?: unknown;
+  domain?: unknown;
+  status?: unknown;
+  type?: unknown;
+  validation?: unknown;
+}
+
+export interface ListSubscriptionCertificatesRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface ListSubscriptionCertificatesRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface ListSubscriptionCertificatesRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class ListSubscriptionCertificatesRequest extends BaseRequestDto {
-  constructor({ guid, pageSize, page, domain, status, type, validation } = {}) {
+  guid?: unknown;
+  pageSize?: unknown;
+  page?: unknown;
+  domain?: unknown;
+  status?: unknown;
+  type?: unknown;
+  validation?: unknown;
+  constructor({ guid, pageSize, page, domain, status, type, validation }: ListSubscriptionCertificatesRequestParams = {}) {
     super();
     this.guid = guid;
     this.pageSize = pageSize;
@@ -12,14 +40,12 @@ export class ListSubscriptionCertificatesRequest extends BaseRequestDto {
     this.type = type;
     this.validation = validation;
   }
-
-  toPathParams() {
+  toPathParams(): ListSubscriptionCertificatesRequestPathParams {
     return {
       guid: this.guid,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): ListSubscriptionCertificatesRequestQueryParams {
     return {
       pageSize: this.pageSize,
       page: this.page,
@@ -29,16 +55,13 @@ export class ListSubscriptionCertificatesRequest extends BaseRequestDto {
       validation: this.validation,
     };
   }
-
-  toHeaders() {
+  toHeaders(): ListSubscriptionCertificatesRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

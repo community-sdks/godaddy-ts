@@ -1,35 +1,52 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export type CustomerRegisterValidateRequestBodyType = Record<string, unknown>;
+
+export interface CustomerRegisterValidateRequestParams {
+  customerId?: string;
+  body?: CustomerRegisterValidateRequestBodyType;
+  xRequestId?: string;
+}
+
+export interface CustomerRegisterValidateRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface CustomerRegisterValidateRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface CustomerRegisterValidateRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class CustomerRegisterValidateRequest extends BaseRequestDto {
-  constructor({ customerId, body, xRequestId } = {}) {
+  customerId?: string;
+  body?: CustomerRegisterValidateRequestBodyType;
+  xRequestId?: string;
+  constructor({ customerId, body, xRequestId }: CustomerRegisterValidateRequestParams = {}) {
     super();
     this.customerId = customerId;
     this.body = body;
     this.xRequestId = xRequestId;
   }
-
-  toPathParams() {
+  toPathParams(): CustomerRegisterValidateRequestPathParams {
     return {
       customerId: this.customerId,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): CustomerRegisterValidateRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): CustomerRegisterValidateRequestHeaders {
     return {
       'X-Request-Id': this.xRequestId,
     };
   }
-
-  toBody() {
+  toBody(): unknown {
     return this.body;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

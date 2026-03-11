@@ -1,10 +1,28 @@
-// @ts-nocheck
 import { BaseResponseDto } from '../../baseResponseDto.js';
 
+export interface CertificateEmailHistoryResponseData {
+  id?: number;
+  accountId?: number;
+  templateType?: string;
+  fromType?: string;
+  recipients?: string;
+  body?: string;
+  dateEntered?: string;
+  subject?: string;
+}
+
 export class CertificateEmailHistoryResponse extends BaseResponseDto {
-  constructor(raw = null) {
+  id?: number;
+  accountId?: number;
+  templateType?: string;
+  fromType?: string;
+  recipients?: string;
+  body?: string;
+  dateEntered?: string;
+  subject?: string;
+  constructor(raw: unknown = null) {
     super(raw);
-    const source = raw && typeof raw === 'object' ? raw : {};
+    const source: CertificateEmailHistoryResponseData = raw && typeof raw === 'object' ? (raw as CertificateEmailHistoryResponseData) : {};
     this.id = source.id;
     this.accountId = source.accountId;
     this.templateType = source.templateType;

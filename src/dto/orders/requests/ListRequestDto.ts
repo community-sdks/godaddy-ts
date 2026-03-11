@@ -1,8 +1,49 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export enum ListRequestDtoSortEnum {
+  EXPIRESAT = "expiresAt",
+  _EXPIRESAT = "-expiresAt",
+}
+
+export interface ListRequestDtoParams {
+  xAppKey?: string;
+  periodStart?: unknown;
+  periodEnd?: unknown;
+  domain?: unknown;
+  productGroupId?: unknown;
+  paymentProfileId?: unknown;
+  parentOrderId?: unknown;
+  offset?: number;
+  limit?: number;
+  sort?: ListRequestDtoSortEnum;
+  xShopperId?: string;
+}
+
+export interface ListRequestDtoPathParams {
+  [key: string]: unknown;
+}
+
+export interface ListRequestDtoQueryParams {
+  [key: string]: unknown;
+}
+
+export interface ListRequestDtoHeaders {
+  [key: string]: unknown;
+}
+
 export class ListRequestDto extends BaseRequestDto {
-  constructor({ xAppKey, periodStart, periodEnd, domain, productGroupId, paymentProfileId, parentOrderId, offset, limit, sort, xShopperId } = {}) {
+  xAppKey?: string;
+  periodStart?: unknown;
+  periodEnd?: unknown;
+  domain?: unknown;
+  productGroupId?: unknown;
+  paymentProfileId?: unknown;
+  parentOrderId?: unknown;
+  offset?: number;
+  limit?: number;
+  sort?: ListRequestDtoSortEnum;
+  xShopperId?: string;
+  constructor({ xAppKey, periodStart, periodEnd, domain, productGroupId, paymentProfileId, parentOrderId, offset, limit, sort, xShopperId }: ListRequestDtoParams = {}) {
     super();
     this.xAppKey = xAppKey;
     this.periodStart = periodStart;
@@ -16,12 +57,10 @@ export class ListRequestDto extends BaseRequestDto {
     this.sort = sort;
     this.xShopperId = xShopperId;
   }
-
-  toPathParams() {
+  toPathParams(): ListRequestDtoPathParams {
     return {};
   }
-
-  toQueryParams() {
+  toQueryParams(): ListRequestDtoQueryParams {
     return {
       periodStart: this.periodStart,
       periodEnd: this.periodEnd,
@@ -34,19 +73,16 @@ export class ListRequestDto extends BaseRequestDto {
       sort: this.sort,
     };
   }
-
-  toHeaders() {
+  toHeaders(): ListRequestDtoHeaders {
     return {
       'X-Shopper-Id': this.xShopperId,
       'X-App-Key': this.xAppKey,
     };
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

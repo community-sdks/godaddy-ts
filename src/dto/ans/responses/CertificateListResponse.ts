@@ -1,9 +1,11 @@
-// @ts-nocheck
 import { BaseResponseDto } from '../../baseResponseDto.js';
 
+export type CertificateListResponseData = Array<Record<string, unknown>>;
+
 export class CertificateListResponse extends BaseResponseDto {
-  constructor(raw = null) {
+  items: CertificateListResponseData;
+  constructor(raw: unknown = null) {
     super(raw);
-    this.items = Array.isArray(raw) ? raw : [];
+    this.items = Array.isArray(raw) ? (raw as CertificateListResponseData) : [];
   }
 }

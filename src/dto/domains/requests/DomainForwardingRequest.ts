@@ -1,33 +1,46 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface DomainForwardingRequestParams {
+  customerId?: string;
+  fqdn?: string;
+}
+
+export interface DomainForwardingRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface DomainForwardingRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface DomainForwardingRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class DomainForwardingRequest extends BaseRequestDto {
-  constructor({ customerId, fqdn } = {}) {
+  customerId?: string;
+  fqdn?: string;
+  constructor({ customerId, fqdn }: DomainForwardingRequestParams = {}) {
     super();
     this.customerId = customerId;
     this.fqdn = fqdn;
   }
-
-  toPathParams() {
+  toPathParams(): DomainForwardingRequestPathParams {
     return {
       customerId: this.customerId,
       fqdn: this.fqdn,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): DomainForwardingRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): DomainForwardingRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

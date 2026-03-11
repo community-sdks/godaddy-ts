@@ -1,31 +1,42 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface DownloadCertificateByEntitlementRequestParams {
+  entitlementId?: string;
+}
+
+export interface DownloadCertificateByEntitlementRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface DownloadCertificateByEntitlementRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface DownloadCertificateByEntitlementRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class DownloadCertificateByEntitlementRequest extends BaseRequestDto {
-  constructor({ entitlementId } = {}) {
+  entitlementId?: string;
+  constructor({ entitlementId }: DownloadCertificateByEntitlementRequestParams = {}) {
     super();
     this.entitlementId = entitlementId;
   }
-
-  toPathParams() {
+  toPathParams(): DownloadCertificateByEntitlementRequestPathParams {
     return {};
   }
-
-  toQueryParams() {
+  toQueryParams(): DownloadCertificateByEntitlementRequestQueryParams {
     return {
       entitlementId: this.entitlementId,
     };
   }
-
-  toHeaders() {
+  toHeaders(): DownloadCertificateByEntitlementRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

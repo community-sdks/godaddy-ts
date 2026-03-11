@@ -1,4 +1,3 @@
-// @ts-nocheck
 export { DomainCollectionResponse } from './DomainCollectionResponse.js';
 export { DomainAgreementResponse } from './DomainAgreementResponse.js';
 export { DomainAvailabilityResponse } from './DomainAvailabilityResponse.js';

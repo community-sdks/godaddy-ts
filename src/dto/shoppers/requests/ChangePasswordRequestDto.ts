@@ -1,32 +1,47 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export type ChangePasswordRequestDtoSecretType = Record<string, unknown>;
+
+export interface ChangePasswordRequestDtoParams {
+  shopperId?: string;
+  secret?: ChangePasswordRequestDtoSecretType;
+}
+
+export interface ChangePasswordRequestDtoPathParams {
+  [key: string]: unknown;
+}
+
+export interface ChangePasswordRequestDtoQueryParams {
+  [key: string]: unknown;
+}
+
+export interface ChangePasswordRequestDtoHeaders {
+  [key: string]: unknown;
+}
+
 export class ChangePasswordRequestDto extends BaseRequestDto {
-  constructor({ shopperId, secret } = {}) {
+  shopperId?: string;
+  secret?: ChangePasswordRequestDtoSecretType;
+  constructor({ shopperId, secret }: ChangePasswordRequestDtoParams = {}) {
     super();
     this.shopperId = shopperId;
     this.secret = secret;
   }
-
-  toPathParams() {
+  toPathParams(): ChangePasswordRequestDtoPathParams {
     return {
       shopperId: this.shopperId,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): ChangePasswordRequestDtoQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): ChangePasswordRequestDtoHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return this.secret;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

@@ -1,38 +1,55 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface GetRequestDtoParams {
+  orderId?: unknown;
+  xAppKey?: string;
+  xShopperId?: string;
+  xMarketId?: unknown;
+}
+
+export interface GetRequestDtoPathParams {
+  [key: string]: unknown;
+}
+
+export interface GetRequestDtoQueryParams {
+  [key: string]: unknown;
+}
+
+export interface GetRequestDtoHeaders {
+  [key: string]: unknown;
+}
+
 export class GetRequestDto extends BaseRequestDto {
-  constructor({ orderId, xAppKey, xShopperId, xMarketId } = {}) {
+  orderId?: unknown;
+  xAppKey?: string;
+  xShopperId?: string;
+  xMarketId?: unknown;
+  constructor({ orderId, xAppKey, xShopperId, xMarketId }: GetRequestDtoParams = {}) {
     super();
     this.orderId = orderId;
     this.xAppKey = xAppKey;
     this.xShopperId = xShopperId;
     this.xMarketId = xMarketId;
   }
-
-  toPathParams() {
+  toPathParams(): GetRequestDtoPathParams {
     return {
       orderId: this.orderId,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): GetRequestDtoQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): GetRequestDtoHeaders {
     return {
       'X-Shopper-Id': this.xShopperId,
       'X-Market-Id': this.xMarketId,
       'X-App-Key': this.xAppKey,
     };
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

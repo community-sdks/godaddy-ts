@@ -1,4 +1,3 @@
-// @ts-nocheck
 export { CertificateIdentifierResponse } from './CertificateIdentifierResponse.js';
 export { CertificateValidationResponse } from './CertificateValidationResponse.js';
 export { CertificateActionListResponse } from './CertificateActionListResponse.js';

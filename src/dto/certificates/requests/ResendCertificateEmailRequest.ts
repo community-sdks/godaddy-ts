@@ -1,33 +1,46 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface ResendCertificateEmailRequestParams {
+  certificateId?: string;
+  emailId?: string;
+}
+
+export interface ResendCertificateEmailRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface ResendCertificateEmailRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface ResendCertificateEmailRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class ResendCertificateEmailRequest extends BaseRequestDto {
-  constructor({ certificateId, emailId } = {}) {
+  certificateId?: string;
+  emailId?: string;
+  constructor({ certificateId, emailId }: ResendCertificateEmailRequestParams = {}) {
     super();
     this.certificateId = certificateId;
     this.emailId = emailId;
   }
-
-  toPathParams() {
+  toPathParams(): ResendCertificateEmailRequestPathParams {
     return {
       certificateId: this.certificateId,
       emailId: this.emailId,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): ResendCertificateEmailRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): ResendCertificateEmailRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

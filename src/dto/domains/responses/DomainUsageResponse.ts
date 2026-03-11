@@ -1,10 +1,20 @@
-// @ts-nocheck
 import { BaseResponseDto } from '../../baseResponseDto.js';
 
+export interface DomainUsageResponseData {
+  details?: Array<Record<string, unknown>>;
+  quota?: number;
+  total?: number;
+  yyyymm?: string;
+}
+
 export class DomainUsageResponse extends BaseResponseDto {
-  constructor(raw = null) {
+  details?: Array<Record<string, unknown>>;
+  quota?: number;
+  total?: number;
+  yyyymm?: string;
+  constructor(raw: unknown = null) {
     super(raw);
-    const source = raw && typeof raw === 'object' ? raw : {};
+    const source: DomainUsageResponseData = raw && typeof raw === 'object' ? (raw as DomainUsageResponseData) : {};
     this.details = source.details;
     this.quota = source.quota;
     this.total = source.total;

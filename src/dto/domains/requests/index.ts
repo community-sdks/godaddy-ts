@@ -1,4 +1,3 @@
-// @ts-nocheck
 export { DomainsListRequest } from './DomainsListRequest.js';
 export { DomainsAgreementRequest } from './DomainsAgreementRequest.js';
 export { DomainAvailabilityRequest } from './DomainAvailabilityRequest.js';

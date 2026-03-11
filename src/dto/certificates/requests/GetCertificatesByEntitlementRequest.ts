@@ -1,33 +1,46 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface GetCertificatesByEntitlementRequestParams {
+  entitlementId?: string;
+  latest?: boolean;
+}
+
+export interface GetCertificatesByEntitlementRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface GetCertificatesByEntitlementRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface GetCertificatesByEntitlementRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class GetCertificatesByEntitlementRequest extends BaseRequestDto {
-  constructor({ entitlementId, latest } = {}) {
+  entitlementId?: string;
+  latest?: boolean;
+  constructor({ entitlementId, latest }: GetCertificatesByEntitlementRequestParams = {}) {
     super();
     this.entitlementId = entitlementId;
     this.latest = latest;
   }
-
-  toPathParams() {
+  toPathParams(): GetCertificatesByEntitlementRequestPathParams {
     return {};
   }
-
-  toQueryParams() {
+  toQueryParams(): GetCertificatesByEntitlementRequestQueryParams {
     return {
       entitlementId: this.entitlementId,
       latest: this.latest,
     };
   }
-
-  toHeaders() {
+  toHeaders(): GetCertificatesByEntitlementRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

@@ -1,32 +1,47 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export type ValidateCertificateRequestCertificateCreateType = Record<string, unknown>;
+
+export interface ValidateCertificateRequestParams {
+  certificateCreate?: ValidateCertificateRequestCertificateCreateType;
+  xMarketId?: string;
+}
+
+export interface ValidateCertificateRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface ValidateCertificateRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface ValidateCertificateRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class ValidateCertificateRequest extends BaseRequestDto {
-  constructor({ certificateCreate, xMarketId } = {}) {
+  certificateCreate?: ValidateCertificateRequestCertificateCreateType;
+  xMarketId?: string;
+  constructor({ certificateCreate, xMarketId }: ValidateCertificateRequestParams = {}) {
     super();
     this.certificateCreate = certificateCreate;
     this.xMarketId = xMarketId;
   }
-
-  toPathParams() {
+  toPathParams(): ValidateCertificateRequestPathParams {
     return {};
   }
-
-  toQueryParams() {
+  toQueryParams(): ValidateCertificateRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): ValidateCertificateRequestHeaders {
     return {
       'X-Market-Id': this.xMarketId,
     };
   }
-
-  toBody() {
+  toBody(): unknown {
     return this.certificateCreate;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

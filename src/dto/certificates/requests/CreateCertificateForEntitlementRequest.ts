@@ -1,32 +1,47 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export type CreateCertificateForEntitlementRequestSubscriptionCertificateCreateType = Record<string, unknown>;
+
+export interface CreateCertificateForEntitlementRequestParams {
+  subscriptionCertificateCreate?: CreateCertificateForEntitlementRequestSubscriptionCertificateCreateType;
+  xMarketId?: string;
+}
+
+export interface CreateCertificateForEntitlementRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface CreateCertificateForEntitlementRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface CreateCertificateForEntitlementRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class CreateCertificateForEntitlementRequest extends BaseRequestDto {
-  constructor({ subscriptionCertificateCreate, xMarketId } = {}) {
+  subscriptionCertificateCreate?: CreateCertificateForEntitlementRequestSubscriptionCertificateCreateType;
+  xMarketId?: string;
+  constructor({ subscriptionCertificateCreate, xMarketId }: CreateCertificateForEntitlementRequestParams = {}) {
     super();
     this.subscriptionCertificateCreate = subscriptionCertificateCreate;
     this.xMarketId = xMarketId;
   }
-
-  toPathParams() {
+  toPathParams(): CreateCertificateForEntitlementRequestPathParams {
     return {};
   }
-
-  toQueryParams() {
+  toQueryParams(): CreateCertificateForEntitlementRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): CreateCertificateForEntitlementRequestHeaders {
     return {
       'X-Market-Id': this.xMarketId,
     };
   }
-
-  toBody() {
+  toBody(): unknown {
     return this.subscriptionCertificateCreate;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

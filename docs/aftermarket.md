@@ -4,21 +4,88 @@ Client accessor: `client.aftermarket()`
 
 ## Method Index
 
-- `getListings`: `GetListingsRequest` -> `ListingsResponse`
-- `deleteListings`: `DeleteListingsRequest` -> `ListingActionResponse`
-- `addExpiryListings`: `AddExpiryListingsRequest` -> `ListingActionResponse`
+- [`getListings`](#getlistings): `ListingsResponse`
+- [`deleteListings`](#deletelistings): `ListingActionResponse`
+- [`addExpiryListings`](#addexpirylistings): `ListingActionResponse`
 
-## Usage
+## Methods
 
-```js
-import { Client, Config } from '../src/index.js';
-import { GetListingsRequest } from '../src/index.js';
+### getListings
+
+Returns: `ListingsResponse`
+
+Request code:
+
+```ts
+import { Client, Config, GetListingsRequest } from '@community-sdks/godaddy-ts';
 
 const client = new Client(new Config({ apiKey: 'your-key', apiSecret: 'your-secret' }));
 const response = await client.aftermarket().getListings(new GetListingsRequest());
-console.log(response.raw);
 ```
 
-## Response Shape
+Response JSON example:
 
-All response DTOs extend `BaseResponseDto` and expose the decoded payload in `.raw`.
+```json
+{
+  "listings": [
+    {
+      "fqdn": "example.com",
+      "listingId": 1001,
+      "listingStatus": "ACTIVE",
+      "price": 2499,
+      "currency": "USD"
+    }
+  ],
+  "pagination": {
+    "total": 1,
+    "start": 0,
+    "limit": 20
+  }
+}
+```
+
+### deleteListings
+
+Returns: `ListingActionResponse`
+
+Request code:
+
+```ts
+import { Client, Config, DeleteListingsRequest } from '@community-sdks/godaddy-ts';
+
+const client = new Client(new Config({ apiKey: 'your-key', apiSecret: 'your-secret' }));
+const response = await client.aftermarket().deleteListings(new DeleteListingsRequest());
+```
+
+Response JSON example:
+
+```json
+{
+  "listingActionId": 900122
+}
+```
+
+### addExpiryListings
+
+Returns: `ListingActionResponse`
+
+Request code:
+
+```ts
+import { Client, Config, AddExpiryListingsRequest } from '@community-sdks/godaddy-ts';
+
+const client = new Client(new Config({ apiKey: 'your-key', apiSecret: 'your-secret' }));
+const response = await client.aftermarket().addExpiryListings(new AddExpiryListingsRequest());
+```
+
+Response JSON example:
+
+```json
+{
+  "listingActionId": 900122
+}
+```
+
+## Exceptions
+
+Service-specific exceptions are under `src/errors/aftermarket/*` and expose `getErrorResponse()`.

@@ -4,19 +4,33 @@ Client accessor: `client.agreements()`
 
 ## Method Index
 
-- `get`: `GetRequestDto` -> `GetResponseDto`
+- [`get`](#get): `GetResponseDto`
 
-## Usage
+## Methods
 
-```js
-import { Client, Config } from '../src/index.js';
-import { GetRequestDto } from '../src/index.js';
+### get
+
+Returns: `GetResponseDto`
+
+Request code:
+
+```ts
+import { Client, Config, GetRequestDto } from '@community-sdks/godaddy-ts';
 
 const client = new Client(new Config({ apiKey: 'your-key', apiSecret: 'your-secret' }));
 const response = await client.agreements().get(new GetRequestDto());
-console.log(response.raw);
 ```
 
-## Response Shape
+Response JSON example:
 
-All response DTOs extend `BaseResponseDto` and expose the decoded payload in `.raw`.
+```json
+{
+  "agreementKey": "DNRA",
+  "title": "Domain Name Registration Agreement",
+  "url": "https://www.godaddy.com/legal/agreements/domain-registration"
+}
+```
+
+## Exceptions
+
+Service-specific exceptions are under `src/errors/agreements/*` and expose `getErrorResponse()`.

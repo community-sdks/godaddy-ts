@@ -1,32 +1,47 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export type ReissueCertificateRequestReissueCreateType = Record<string, unknown>;
+
+export interface ReissueCertificateRequestParams {
+  certificateId?: string;
+  reissueCreate?: ReissueCertificateRequestReissueCreateType;
+}
+
+export interface ReissueCertificateRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface ReissueCertificateRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface ReissueCertificateRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class ReissueCertificateRequest extends BaseRequestDto {
-  constructor({ certificateId, reissueCreate } = {}) {
+  certificateId?: string;
+  reissueCreate?: ReissueCertificateRequestReissueCreateType;
+  constructor({ certificateId, reissueCreate }: ReissueCertificateRequestParams = {}) {
     super();
     this.certificateId = certificateId;
     this.reissueCreate = reissueCreate;
   }
-
-  toPathParams() {
+  toPathParams(): ReissueCertificateRequestPathParams {
     return {
       certificateId: this.certificateId,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): ReissueCertificateRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): ReissueCertificateRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return this.reissueCreate;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

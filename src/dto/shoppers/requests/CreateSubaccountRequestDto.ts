@@ -1,29 +1,42 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export type CreateSubaccountRequestDtoSubaccountType = Record<string, unknown>;
+
+export interface CreateSubaccountRequestDtoParams {
+  subaccount?: CreateSubaccountRequestDtoSubaccountType;
+}
+
+export interface CreateSubaccountRequestDtoPathParams {
+  [key: string]: unknown;
+}
+
+export interface CreateSubaccountRequestDtoQueryParams {
+  [key: string]: unknown;
+}
+
+export interface CreateSubaccountRequestDtoHeaders {
+  [key: string]: unknown;
+}
+
 export class CreateSubaccountRequestDto extends BaseRequestDto {
-  constructor({ subaccount } = {}) {
+  subaccount?: CreateSubaccountRequestDtoSubaccountType;
+  constructor({ subaccount }: CreateSubaccountRequestDtoParams = {}) {
     super();
     this.subaccount = subaccount;
   }
-
-  toPathParams() {
+  toPathParams(): CreateSubaccountRequestDtoPathParams {
     return {};
   }
-
-  toQueryParams() {
+  toQueryParams(): CreateSubaccountRequestDtoQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): CreateSubaccountRequestDtoHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return this.subaccount;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

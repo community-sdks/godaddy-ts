@@ -1,28 +1,36 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
+
+export type DomainsTldsRequestParams = Record<string, never>;
+
+export interface DomainsTldsRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface DomainsTldsRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface DomainsTldsRequestHeaders {
+  [key: string]: unknown;
+}
 
 export class DomainsTldsRequest extends BaseRequestDto {
   constructor() {
     super();
   }
-
-  toPathParams() {
+  toPathParams(): DomainsTldsRequestPathParams {
     return {};
   }
-
-  toQueryParams() {
+  toQueryParams(): DomainsTldsRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): DomainsTldsRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

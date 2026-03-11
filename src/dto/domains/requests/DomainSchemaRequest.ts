@@ -1,31 +1,42 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface DomainSchemaRequestParams {
+  tld?: string;
+}
+
+export interface DomainSchemaRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface DomainSchemaRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface DomainSchemaRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class DomainSchemaRequest extends BaseRequestDto {
-  constructor({ tld } = {}) {
+  tld?: string;
+  constructor({ tld }: DomainSchemaRequestParams = {}) {
     super();
     this.tld = tld;
   }
-
-  toPathParams() {
+  toPathParams(): DomainSchemaRequestPathParams {
     return {
       tld: this.tld,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): DomainSchemaRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): DomainSchemaRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

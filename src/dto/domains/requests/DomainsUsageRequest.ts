@@ -1,37 +1,56 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export enum DomainsUsageRequestIncludesItemEnum {
+  DETAILS = "details",
+}
+
+export interface DomainsUsageRequestParams {
+  yyyymm?: string;
+  xRequestId?: string;
+  includes?: Array<DomainsUsageRequestIncludesItemEnum>;
+}
+
+export interface DomainsUsageRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface DomainsUsageRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface DomainsUsageRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class DomainsUsageRequest extends BaseRequestDto {
-  constructor({ yyyymm, xRequestId, includes } = {}) {
+  yyyymm?: string;
+  xRequestId?: string;
+  includes?: Array<DomainsUsageRequestIncludesItemEnum>;
+  constructor({ yyyymm, xRequestId, includes }: DomainsUsageRequestParams = {}) {
     super();
     this.yyyymm = yyyymm;
     this.xRequestId = xRequestId;
     this.includes = includes;
   }
-
-  toPathParams() {
+  toPathParams(): DomainsUsageRequestPathParams {
     return {
       yyyymm: this.yyyymm,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): DomainsUsageRequestQueryParams {
     return {
       includes: this.includes,
     };
   }
-
-  toHeaders() {
+  toHeaders(): DomainsUsageRequestHeaders {
     return {
       'X-Request-Id': this.xRequestId,
     };
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

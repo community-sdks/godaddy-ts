@@ -1,10 +1,16 @@
-// @ts-nocheck
 import { BaseResponseDto } from '../../baseResponseDto.js';
 
+export interface ChangePasswordResponseDtoData {
+  customerId?: string;
+  shopperId?: string;
+}
+
 export class ChangePasswordResponseDto extends BaseResponseDto {
-  constructor(raw = null) {
+  customerId?: string;
+  shopperId?: string;
+  constructor(raw: unknown = null) {
     super(raw);
-    const source = raw && typeof raw === 'object' ? raw : {};
+    const source: ChangePasswordResponseDtoData = raw && typeof raw === 'object' ? (raw as ChangePasswordResponseDtoData) : {};
     this.customerId = source.customerId;
     this.shopperId = source.shopperId;
   }

@@ -1,35 +1,57 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export enum DomainAvailabilityRequestCheckTypeEnum {
+  FAST = "FAST",
+  FULL = "FULL",
+  FAST_2 = "fast",
+  FULL_3 = "full",
+}
+
+export interface DomainAvailabilityRequestParams {
+  domain?: string;
+  checkType?: DomainAvailabilityRequestCheckTypeEnum;
+  forTransfer?: boolean;
+}
+
+export interface DomainAvailabilityRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface DomainAvailabilityRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface DomainAvailabilityRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class DomainAvailabilityRequest extends BaseRequestDto {
-  constructor({ domain, checkType, forTransfer } = {}) {
+  domain?: string;
+  checkType?: DomainAvailabilityRequestCheckTypeEnum;
+  forTransfer?: boolean;
+  constructor({ domain, checkType, forTransfer }: DomainAvailabilityRequestParams = {}) {
     super();
     this.domain = domain;
     this.checkType = checkType;
     this.forTransfer = forTransfer;
   }
-
-  toPathParams() {
+  toPathParams(): DomainAvailabilityRequestPathParams {
     return {};
   }
-
-  toQueryParams() {
+  toQueryParams(): DomainAvailabilityRequestQueryParams {
     return {
       domain: this.domain,
       checkType: this.checkType,
       forTransfer: this.forTransfer,
     };
   }
-
-  toHeaders() {
+  toHeaders(): DomainAvailabilityRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

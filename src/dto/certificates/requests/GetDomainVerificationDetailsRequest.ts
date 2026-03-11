@@ -1,35 +1,50 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface GetDomainVerificationDetailsRequestParams {
+  customerId?: unknown;
+  certificateId?: unknown;
+  domain?: unknown;
+}
+
+export interface GetDomainVerificationDetailsRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface GetDomainVerificationDetailsRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface GetDomainVerificationDetailsRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class GetDomainVerificationDetailsRequest extends BaseRequestDto {
-  constructor({ customerId, certificateId, domain } = {}) {
+  customerId?: unknown;
+  certificateId?: unknown;
+  domain?: unknown;
+  constructor({ customerId, certificateId, domain }: GetDomainVerificationDetailsRequestParams = {}) {
     super();
     this.customerId = customerId;
     this.certificateId = certificateId;
     this.domain = domain;
   }
-
-  toPathParams() {
+  toPathParams(): GetDomainVerificationDetailsRequestPathParams {
     return {
       customerId: this.customerId,
       certificateId: this.certificateId,
       domain: this.domain,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): GetDomainVerificationDetailsRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): GetDomainVerificationDetailsRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

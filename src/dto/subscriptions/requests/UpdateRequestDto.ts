@@ -1,37 +1,56 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export type UpdateRequestDtoSubscriptionType = Record<string, unknown>;
+
+export interface UpdateRequestDtoParams {
+  subscriptionId?: string;
+  xAppKey?: string;
+  subscription?: UpdateRequestDtoSubscriptionType;
+  xShopperId?: string;
+}
+
+export interface UpdateRequestDtoPathParams {
+  [key: string]: unknown;
+}
+
+export interface UpdateRequestDtoQueryParams {
+  [key: string]: unknown;
+}
+
+export interface UpdateRequestDtoHeaders {
+  [key: string]: unknown;
+}
+
 export class UpdateRequestDto extends BaseRequestDto {
-  constructor({ subscriptionId, xAppKey, subscription, xShopperId } = {}) {
+  subscriptionId?: string;
+  xAppKey?: string;
+  subscription?: UpdateRequestDtoSubscriptionType;
+  xShopperId?: string;
+  constructor({ subscriptionId, xAppKey, subscription, xShopperId }: UpdateRequestDtoParams = {}) {
     super();
     this.subscriptionId = subscriptionId;
     this.xAppKey = xAppKey;
     this.subscription = subscription;
     this.xShopperId = xShopperId;
   }
-
-  toPathParams() {
+  toPathParams(): UpdateRequestDtoPathParams {
     return {
       subscriptionId: this.subscriptionId,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): UpdateRequestDtoQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): UpdateRequestDtoHeaders {
     return {
       'X-App-Key': this.xAppKey,
       'X-Shopper-Id': this.xShopperId,
     };
   }
-
-  toBody() {
+  toBody(): unknown {
     return this.subscription;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

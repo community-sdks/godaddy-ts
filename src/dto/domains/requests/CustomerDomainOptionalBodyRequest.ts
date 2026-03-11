@@ -1,37 +1,56 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export type CustomerDomainOptionalBodyRequestBodyType = Record<string, unknown>;
+
+export interface CustomerDomainOptionalBodyRequestParams {
+  customerId?: string;
+  domain?: string;
+  xRequestId?: string;
+  body?: CustomerDomainOptionalBodyRequestBodyType;
+}
+
+export interface CustomerDomainOptionalBodyRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface CustomerDomainOptionalBodyRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface CustomerDomainOptionalBodyRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class CustomerDomainOptionalBodyRequest extends BaseRequestDto {
-  constructor({ customerId, domain, xRequestId, body } = {}) {
+  customerId?: string;
+  domain?: string;
+  xRequestId?: string;
+  body?: CustomerDomainOptionalBodyRequestBodyType;
+  constructor({ customerId, domain, xRequestId, body }: CustomerDomainOptionalBodyRequestParams = {}) {
     super();
     this.customerId = customerId;
     this.domain = domain;
     this.xRequestId = xRequestId;
     this.body = body;
   }
-
-  toPathParams() {
+  toPathParams(): CustomerDomainOptionalBodyRequestPathParams {
     return {
       customerId: this.customerId,
       domain: this.domain,
     };
   }
-
-  toQueryParams() {
+  toQueryParams(): CustomerDomainOptionalBodyRequestQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): CustomerDomainOptionalBodyRequestHeaders {
     return {
       'X-Request-Id': this.xRequestId,
     };
   }
-
-  toBody() {
+  toBody(): unknown {
     return this.body;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

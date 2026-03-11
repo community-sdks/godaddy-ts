@@ -1,8 +1,50 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export enum GetTicketsV2RequestTypeEnum {
+  A_RECORD = "A_RECORD",
+  CHILD_ABUSE = "CHILD_ABUSE",
+  CONTENT = "CONTENT",
+  FRAUD_WIRE = "FRAUD_WIRE",
+  IP_BLOCK = "IP_BLOCK",
+  MALWARE = "MALWARE",
+  NETWORK_ABUSE = "NETWORK_ABUSE",
+  PHISHING = "PHISHING",
+  SPAM = "SPAM",
+}
+
+export interface GetTicketsV2RequestParams {
+  type?: GetTicketsV2RequestTypeEnum;
+  closed?: boolean;
+  sourceDomainOrIp?: string;
+  target?: string;
+  createdStart?: string;
+  createdEnd?: string;
+  limit?: number;
+  offset?: number;
+}
+
+export interface GetTicketsV2RequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface GetTicketsV2RequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface GetTicketsV2RequestHeaders {
+  [key: string]: unknown;
+}
+
 export class GetTicketsV2Request extends BaseRequestDto {
-  constructor({ type, closed, sourceDomainOrIp, target, createdStart, createdEnd, limit, offset } = {}) {
+  type?: GetTicketsV2RequestTypeEnum;
+  closed?: boolean;
+  sourceDomainOrIp?: string;
+  target?: string;
+  createdStart?: string;
+  createdEnd?: string;
+  limit?: number;
+  offset?: number;
+  constructor({ type, closed, sourceDomainOrIp, target, createdStart, createdEnd, limit, offset }: GetTicketsV2RequestParams = {}) {
     super();
     this.type = type;
     this.closed = closed;
@@ -13,12 +55,10 @@ export class GetTicketsV2Request extends BaseRequestDto {
     this.limit = limit;
     this.offset = offset;
   }
-
-  toPathParams() {
+  toPathParams(): GetTicketsV2RequestPathParams {
     return {};
   }
-
-  toQueryParams() {
+  toQueryParams(): GetTicketsV2RequestQueryParams {
     return {
       type: this.type,
       closed: this.closed,
@@ -30,16 +70,13 @@ export class GetTicketsV2Request extends BaseRequestDto {
       offset: this.offset,
     };
   }
-
-  toHeaders() {
+  toHeaders(): GetTicketsV2RequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

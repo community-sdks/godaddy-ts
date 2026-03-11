@@ -1,8 +1,34 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface SearchSubscriptionsByDomainRequestParams {
+  pageSize?: unknown;
+  page?: unknown;
+  domain?: unknown;
+  status?: unknown;
+  type?: unknown;
+  validation?: unknown;
+}
+
+export interface SearchSubscriptionsByDomainRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface SearchSubscriptionsByDomainRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface SearchSubscriptionsByDomainRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class SearchSubscriptionsByDomainRequest extends BaseRequestDto {
-  constructor({ pageSize, page, domain, status, type, validation } = {}) {
+  pageSize?: unknown;
+  page?: unknown;
+  domain?: unknown;
+  status?: unknown;
+  type?: unknown;
+  validation?: unknown;
+  constructor({ pageSize, page, domain, status, type, validation }: SearchSubscriptionsByDomainRequestParams = {}) {
     super();
     this.pageSize = pageSize;
     this.page = page;
@@ -11,12 +37,10 @@ export class SearchSubscriptionsByDomainRequest extends BaseRequestDto {
     this.type = type;
     this.validation = validation;
   }
-
-  toPathParams() {
+  toPathParams(): SearchSubscriptionsByDomainRequestPathParams {
     return {};
   }
-
-  toQueryParams() {
+  toQueryParams(): SearchSubscriptionsByDomainRequestQueryParams {
     return {
       pageSize: this.pageSize,
       page: this.page,
@@ -26,16 +50,13 @@ export class SearchSubscriptionsByDomainRequest extends BaseRequestDto {
       validation: this.validation,
     };
   }
-
-  toHeaders() {
+  toHeaders(): SearchSubscriptionsByDomainRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

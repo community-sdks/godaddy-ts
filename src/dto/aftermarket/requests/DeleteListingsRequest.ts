@@ -1,31 +1,42 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface DeleteListingsRequestParams {
+  domains?: Array<string>;
+}
+
+export interface DeleteListingsRequestPathParams {
+  [key: string]: unknown;
+}
+
+export interface DeleteListingsRequestQueryParams {
+  [key: string]: unknown;
+}
+
+export interface DeleteListingsRequestHeaders {
+  [key: string]: unknown;
+}
+
 export class DeleteListingsRequest extends BaseRequestDto {
-  constructor({ domains } = {}) {
+  domains?: Array<string>;
+  constructor({ domains }: DeleteListingsRequestParams = {}) {
     super();
     this.domains = domains;
   }
-
-  toPathParams() {
+  toPathParams(): DeleteListingsRequestPathParams {
     return {};
   }
-
-  toQueryParams() {
+  toQueryParams(): DeleteListingsRequestQueryParams {
     return {
       domains: this.domains,
     };
   }
-
-  toHeaders() {
+  toHeaders(): DeleteListingsRequestHeaders {
     return {};
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }

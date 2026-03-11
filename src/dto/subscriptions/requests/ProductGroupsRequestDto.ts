@@ -1,33 +1,46 @@
-// @ts-nocheck
 import { BaseRequestDto } from '../../baseRequestDto.js';
 
+export interface ProductGroupsRequestDtoParams {
+  xAppKey?: string;
+  xShopperId?: string;
+}
+
+export interface ProductGroupsRequestDtoPathParams {
+  [key: string]: unknown;
+}
+
+export interface ProductGroupsRequestDtoQueryParams {
+  [key: string]: unknown;
+}
+
+export interface ProductGroupsRequestDtoHeaders {
+  [key: string]: unknown;
+}
+
 export class ProductGroupsRequestDto extends BaseRequestDto {
-  constructor({ xAppKey, xShopperId } = {}) {
+  xAppKey?: string;
+  xShopperId?: string;
+  constructor({ xAppKey, xShopperId }: ProductGroupsRequestDtoParams = {}) {
     super();
     this.xAppKey = xAppKey;
     this.xShopperId = xShopperId;
   }
-
-  toPathParams() {
+  toPathParams(): ProductGroupsRequestDtoPathParams {
     return {};
   }
-
-  toQueryParams() {
+  toQueryParams(): ProductGroupsRequestDtoQueryParams {
     return {};
   }
-
-  toHeaders() {
+  toHeaders(): ProductGroupsRequestDtoHeaders {
     return {
       'X-App-Key': this.xAppKey,
       'X-Shopper-Id': this.xShopperId,
     };
   }
-
-  toBody() {
+  toBody(): unknown {
     return null;
   }
-
-  isMultipart() {
+  isMultipart(): boolean {
     return false;
   }
 }
