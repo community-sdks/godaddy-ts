@@ -1,95 +1,24 @@
 # Aftermarket Service
 
-This document covers the Aftermarket service in the GoDaddy JavaScript SDK. It wraps the **Aftermarket API** endpoints from the provided source documentation.
-
 Client accessor: `client.aftermarket()`
 
-## getListings
+## Method Index
 
-Get listings from GoDaddy Auctions
+- `getListings`: `GetListingsRequest` -> `ListingsResponse`
+- `deleteListings`: `DeleteListingsRequest` -> `ListingActionResponse`
+- `addExpiryListings`: `AddExpiryListingsRequest` -> `ListingActionResponse`
 
-- HTTP method: `GET`
-- Path: `/v1/customers/{customerId}/auctions/listings`
-- Swagger operationId: `getListings`
-
-### Input
+## Usage
 
 ```js
-const response = await client.aftermarket().getListings(
-  'sample',
-  ['sample'],
-  ['sample'],
-  'sample',
-  'sample',
-  1,
-  1,
-);
+import { Client, Config } from '../src/index.js';
+import { GetListingsRequest } from '../src/index.js';
+
+const client = new Client(new Config({ apiKey: 'your-key', apiSecret: 'your-secret' }));
+const response = await client.aftermarket().getListings(new GetListingsRequest());
+console.log(response.raw);
 ```
 
-### Output
+## Response Shape
 
-```json
-{
-  "ok": true,
-  "method": "GET",
-  "path": "/v1/customers/{customerId}/auctions/listings",
-  "summary": "Get listings from GoDaddy Auctions",
-  "data": {}
-}
-```
-
-## deleteListings
-
-Remove listings from GoDaddy Auction
-
-- HTTP method: `DELETE`
-- Path: `/v1/aftermarket/listings`
-- Swagger operationId: `deleteListings`
-
-### Input
-
-```js
-const response = await client.aftermarket().deleteListings(
-  ['sample'],
-);
-```
-
-### Output
-
-```json
-{
-  "ok": true,
-  "method": "DELETE",
-  "path": "/v1/aftermarket/listings",
-  "summary": "Remove listings from GoDaddy Auction",
-  "data": {}
-}
-```
-
-## addExpiryListings
-
-Add expiry listings into GoDaddy Auction
-
-- HTTP method: `POST`
-- Path: `/v1/aftermarket/listings/expiry`
-- Swagger operationId: `addExpiryListings`
-
-### Input
-
-```js
-const response = await client.aftermarket().addExpiryListings(
-  ['sample'],
-);
-```
-
-### Output
-
-```json
-{
-  "ok": true,
-  "method": "POST",
-  "path": "/v1/aftermarket/listings/expiry",
-  "summary": "Add expiry listings into GoDaddy Auction",
-  "data": {}
-}
-```
+All response DTOs extend `BaseResponseDto` and expose the decoded payload in `.raw`.

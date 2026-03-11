@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ApiKeyAuth } from './auth/apiKeyAuth.js';
 import { ApiException } from './errors/apiException.js';
 import { NotFoundException } from './errors/notFoundException.js';
@@ -9,9 +10,6 @@ import { FetchTransport } from './http/fetchTransport.js';
 import { Request } from './http/request.js';
 
 export class ApiClient {
-  config;
-  transport;
-
   constructor(config, transport = null) {
     this.config = config;
     this.transport = transport ?? new FetchTransport(config.fetchImplementation);

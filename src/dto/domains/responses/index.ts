@@ -1,0 +1,22 @@
+// @ts-nocheck
+export { DomainCollectionResponse } from './DomainCollectionResponse.js';
+export { DomainAgreementResponse } from './DomainAgreementResponse.js';
+export { DomainAvailabilityResponse } from './DomainAvailabilityResponse.js';
+export { DomainBulkAvailabilityResponse } from './DomainBulkAvailabilityResponse.js';
+export { DomainValidationResultResponse } from './DomainValidationResultResponse.js';
+export { DomainOrderResponse } from './DomainOrderResponse.js';
+export { DomainSchemaResponse } from './DomainSchemaResponse.js';
+export { DomainSuggestionsResponse } from './DomainSuggestionsResponse.js';
+export { DomainTldListResponse } from './DomainTldListResponse.js';
+export { DomainOperationResponse } from './DomainOperationResponse.js';
+export { DomainDetailsResponse } from './DomainDetailsResponse.js';
+export { DomainRecordListResponse } from './DomainRecordListResponse.js';
+export { DomainTransferResponse } from './DomainTransferResponse.js';
+export { DomainForwardingResponse } from './DomainForwardingResponse.js';
+export { DomainActionCollectionResponse } from './DomainActionCollectionResponse.js';
+export { DomainNotificationListResponse } from './DomainNotificationListResponse.js';
+export { DomainNotificationSchemaResponse } from './DomainNotificationSchemaResponse.js';
+export { DomainNotificationAckResponse } from './DomainNotificationAckResponse.js';
+export { DomainMaintenanceListResponse } from './DomainMaintenanceListResponse.js';
+export { DomainMaintenanceResponse } from './DomainMaintenanceResponse.js';
+export { DomainUsageResponse } from './DomainUsageResponse.js';

@@ -1,9 +1,6 @@
 import { Response } from '../../src/http/response.js';
 
 export class TestTransport {
-  requests;
-  queue;
-
   constructor() {
     this.requests = [];
     this.queue = [];

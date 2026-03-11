@@ -1,35 +1,22 @@
 # Agreements Service
 
-This document covers the Agreements service in the GoDaddy JavaScript SDK. It wraps the **GoDaddy API** endpoints from the provided source documentation.
-
 Client accessor: `client.agreements()`
 
-## get
+## Method Index
 
-Retrieve Legal Agreements for provided agreements keys
+- `get`: `GetRequestDto` -> `GetResponseDto`
 
-- HTTP method: `GET`
-- Path: `/v1/agreements`
-- Swagger operationId: `get`
-
-### Input
+## Usage
 
 ```js
-const response = await client.agreements().get(
-  ['sample'],
-  'header-value',
-  'header-value',
-);
+import { Client, Config } from '../src/index.js';
+import { GetRequestDto } from '../src/index.js';
+
+const client = new Client(new Config({ apiKey: 'your-key', apiSecret: 'your-secret' }));
+const response = await client.agreements().get(new GetRequestDto());
+console.log(response.raw);
 ```
 
-### Output
+## Response Shape
 
-```json
-{
-  "ok": true,
-  "method": "GET",
-  "path": "/v1/agreements",
-  "summary": "Retrieve Legal Agreements for provided agreements keys",
-  "data": {}
-}
-```
+All response DTOs extend `BaseResponseDto` and expose the decoded payload in `.raw`.

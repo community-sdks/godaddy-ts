@@ -1,14 +1,5 @@
+// @ts-nocheck
 export class Config {
-  apiKey;
-  apiSecret;
-  baseUrl;
-  timeout;
-  maxRetries;
-  retryDelayMs;
-  defaultHeaders;
-  userAgent;
-  fetchImplementation;
-
   constructor({
     apiKey = null,
     apiSecret = null,
@@ -17,7 +8,7 @@ export class Config {
     maxRetries = 2,
     retryDelayMs = 200,
     defaultHeaders = {},
-    userAgent = 'community-sdks/godaddy-typescript',
+    userAgent = 'community-sdks/godaddy-javascript',
     fetchImplementation = globalThis.fetch ? globalThis.fetch.bind(globalThis) : null
   } = {}) {
     this.apiKey = apiKey;

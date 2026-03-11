@@ -1,22 +1,7 @@
+// @ts-nocheck
 export class ApiException extends Error {
-  statusCode;
-  responseBody;
-  headers;
-  requestMethod;
-  requestUrl;
-
-  constructor(
-    message,
-    details: {
-      statusCode?: number;
-      responseBody?: string;
-      headers?: Record<string, string>;
-      requestMethod?: string;
-      requestUrl?: string;
-    } = {}
-  ) {
+  constructor(message, { statusCode, responseBody, headers, requestMethod, requestUrl } = {}) {
     super(message);
-    const { statusCode, responseBody, headers, requestMethod, requestUrl } = details;
     this.name = this.constructor.name;
     this.statusCode = statusCode ?? 0;
     this.responseBody = responseBody ?? '';

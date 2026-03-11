@@ -1,3 +1,4 @@
+// @ts-nocheck
 export class ApiKeyAuth {
   static headers(config) {
     if (!config.apiKey || !config.apiSecret) {

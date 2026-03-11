@@ -1,34 +1,22 @@
 # Auctions Service
 
-This document covers the Auctions service in the GoDaddy JavaScript SDK. It wraps the **Auctions API** endpoints from the provided source documentation.
-
 Client accessor: `client.auctions()`
 
-## placeBids
+## Method Index
 
-Places multiple bids with a single request.
+- `placeBids`: `PlaceBidsRequestDto` -> `PlaceBidsResponseDto`
 
-- HTTP method: `POST`
-- Path: `/v1/customers/{customerId}/aftermarket/listings/bids`
-- Swagger operationId: `placeBids`
-
-### Input
+## Usage
 
 ```js
-const response = await client.auctions().placeBids(
-  'sample',
-  { sample: true },
-);
+import { Client, Config } from '../src/index.js';
+import { PlaceBidsRequestDto } from '../src/index.js';
+
+const client = new Client(new Config({ apiKey: 'your-key', apiSecret: 'your-secret' }));
+const response = await client.auctions().placeBids(new PlaceBidsRequestDto());
+console.log(response.raw);
 ```
 
-### Output
+## Response Shape
 
-```json
-{
-  "ok": true,
-  "method": "POST",
-  "path": "/v1/customers/{customerId}/aftermarket/listings/bids",
-  "summary": "Places multiple bids with a single request.",
-  "data": {}
-}
-```
+All response DTOs extend `BaseResponseDto` and expose the decoded payload in `.raw`.

@@ -1,17 +1,54 @@
+// @ts-nocheck
 import { AbstractService } from './abstractService.js';
+import {
+  ListRequestDto,
+  GetRequestDto,
+} from '../dto/orders/requests/index.js';
+import {
+  ListResponseDto,
+  GetResponseDto,
+} from '../dto/orders/responses/index.js';
 
 export class OrdersService extends AbstractService {
   static BASE_URL = 'https://api.ote-godaddy.com';
+
+  static requestDtos = {
+    list: ListRequestDto,
+    get: GetRequestDto,
+  };
+
+  static responseDtos = {
+    list: ListResponseDto,
+    get: GetResponseDto,
+  };
 
   constructor(client) {
     super(client, OrdersService.BASE_URL);
   }
 
-  async list(xAppKey, periodStart = null, periodEnd = null, domain = null, productGroupId = null, paymentProfileId = null, parentOrderId = null, offset = null, limit = null, sort = null, xShopperId = null) {
-    return this.call('GET', '/v1/orders', { queryParams: { periodStart, periodEnd, domain, productGroupId, paymentProfileId, parentOrderId, offset, limit, sort }, headers: { 'X-Shopper-Id': xShopperId, 'X-App-Key': xAppKey } });
+  async list(request = new ListRequestDto()) {
+    const requestDto = ListRequestDto.from(request);
+    const response = await this.call('GET', '/v1/orders', {
+      pathParams: requestDto.toPathParams(),
+      queryParams: requestDto.toQueryParams(),
+      headers: requestDto.toHeaders(),
+      body: requestDto.toBody(),
+      multipart: requestDto.isMultipart()
+    });
+
+    return ListResponseDto.from(response);
   }
 
-  async get(orderId, xAppKey, xShopperId = null, xMarketId = null) {
-    return this.call('GET', '/v1/orders/{orderId}', { pathParams: { orderId }, headers: { 'X-Shopper-Id': xShopperId, 'X-Market-Id': xMarketId, 'X-App-Key': xAppKey } });
+  async get(request = new GetRequestDto()) {
+    const requestDto = GetRequestDto.from(request);
+    const response = await this.call('GET', '/v1/orders/{orderId}', {
+      pathParams: requestDto.toPathParams(),
+      queryParams: requestDto.toQueryParams(),
+      headers: requestDto.toHeaders(),
+      body: requestDto.toBody(),
+      multipart: requestDto.isMultipart()
+    });
+
+    return GetResponseDto.from(response);
   }
 }

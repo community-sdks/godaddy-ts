@@ -1,12 +1,5 @@
+// @ts-nocheck
 export class Request {
-  method;
-  url;
-  headers;
-  query;
-  body;
-  multipart;
-  timeout;
-
   constructor({ method, url, headers = {}, query = {}, body = null, multipart = false, timeout = 30_000 }) {
     this.method = method;
     this.url = url;

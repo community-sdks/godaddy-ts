@@ -1,8 +1,7 @@
+// @ts-nocheck
 import { Response } from './response.js';
 
 export class FetchTransport {
-  fetchImplementation;
-
   constructor(fetchImplementation) {
     this.fetchImplementation = fetchImplementation ?? null;
   }
@@ -16,7 +15,7 @@ export class FetchTransport {
     const timeoutId = setTimeout(() => controller.abort(), request.timeout);
 
     try {
-      const init: RequestInit = {
+      const init = {
         method: request.method,
         headers: { ...request.headers },
         signal: controller.signal
@@ -32,17 +31,17 @@ export class FetchTransport {
 
             if (Array.isArray(value)) {
               for (const item of value) {
-                form.append(key, String(item));
+                form.append(key, item);
               }
             } else {
-              form.append(key, String(value));
+              form.append(key, value);
             }
           }
           init.body = form;
-          delete (init.headers as Record<string, string>)['Content-Type'];
+          delete init.headers['Content-Type'];
         } else if (typeof request.body === 'string' || request.body instanceof Uint8Array || request.body instanceof ArrayBuffer) {
           init.body = request.body;
-        } else if ((init.headers as Record<string, string>)['Content-Type']?.includes('application/x-www-form-urlencoded')) {
+        } else if (init.headers['Content-Type']?.includes('application/x-www-form-urlencoded')) {
           init.body = new URLSearchParams(request.body).toString();
         } else {
           init.body = JSON.stringify(request.body);

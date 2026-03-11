@@ -1,12 +1,12 @@
-# GoDaddy TypeScript SDK
+# GoDaddy JavaScript SDK
 
 ## Getting Started
 
 ```bash
-npm install
+npm install @community-sdks/godaddy-js
 ```
 
-```ts
+```js
 import { Client, Config } from './src/index.js';
 
 const client = new Client(new Config({
@@ -14,6 +14,47 @@ const client = new Client(new Config({
   apiSecret: 'your-secret'
 }));
 ```
+
+## API Style
+
+- Service methods use unique camelCase names (for example `getCustomerDomain`, `listSubscriptionCertificates`).
+- Methods avoid HTTP verb/path-prefixed names (no `get__v2_...`, `post__...`, etc.).
+- Each method accepts a request DTO class.
+- Each method returns a response DTO class.
+
+## DTO Usage
+
+```js
+import {
+  Client,
+  Config,
+  DomainsListRequest,
+  DomainCollectionResponse,
+} from './src/index.js';
+
+const client = new Client(new Config({
+  apiKey: 'your-key',
+  apiSecret: 'your-secret',
+}));
+
+const response = await client.domains().list(new DomainsListRequest({
+  xShopperId: '123',
+  limit: 10,
+}));
+
+if (response instanceof DomainCollectionResponse) {
+  console.log(response.raw);
+}
+```
+
+Request DTOs expose request-shaping helpers used internally:
+
+- `toPathParams()`
+- `toQueryParams()`
+- `toHeaders()`
+- `toBody()`
+
+Response DTOs expose decoded payload on `.raw`.
 
 ## Services
 

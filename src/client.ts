@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ApiClient } from './apiClient.js';
 import { Config } from './config.js';
 import { AbuseService } from './services/abuseService.js';
@@ -14,20 +15,6 @@ import { ShoppersService } from './services/shoppersService.js';
 import { SubscriptionsService } from './services/subscriptionsService.js';
 
 export class Client {
-  apiClient;
-  _abuse;
-  _aftermarket;
-  _agreements;
-  _ans;
-  _auctions;
-  _certificates;
-  _countries;
-  _domains;
-  _orders;
-  _parking;
-  _shoppers;
-  _subscriptions;
-
   constructor(config = new Config(), transport = null) {
     this.apiClient = new ApiClient(config, transport);
     this._abuse = new AbuseService(this.apiClient);

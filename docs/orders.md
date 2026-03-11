@@ -1,74 +1,23 @@
 # Orders Service
 
-This document covers the Orders service in the GoDaddy JavaScript SDK. It wraps the **GoDaddy API** endpoints from the provided source documentation.
-
 Client accessor: `client.orders()`
 
-## list
+## Method Index
 
-Retrieve a list of orders for the authenticated shopper. Only one filter may be used at a time
+- `list`: `ListRequestDto` -> `ListResponseDto`
+- `get`: `GetRequestDto` -> `GetResponseDto`
 
-- HTTP method: `GET`
-- Path: `/v1/orders`
-- Swagger operationId: `list`
-
-### Input
+## Usage
 
 ```js
-const response = await client.orders().list(
-  'header-value',
-  'sample',
-  'sample',
-  'sample',
-  'sample',
-  'sample',
-  'sample',
-  1,
-  1,
-  'sample',
-  'header-value',
-);
+import { Client, Config } from '../src/index.js';
+import { ListRequestDto } from '../src/index.js';
+
+const client = new Client(new Config({ apiKey: 'your-key', apiSecret: 'your-secret' }));
+const response = await client.orders().list(new ListRequestDto());
+console.log(response.raw);
 ```
 
-### Output
+## Response Shape
 
-```json
-{
-  "ok": true,
-  "method": "GET",
-  "path": "/v1/orders",
-  "summary": "Retrieve a list of orders for the authenticated shopper. Only one filter may be used at a time",
-  "data": {}
-}
-```
-
-## get
-
-Retrieve details for specified order
-
-- HTTP method: `GET`
-- Path: `/v1/orders/{orderId}`
-- Swagger operationId: `get`
-
-### Input
-
-```js
-const response = await client.orders().get(
-  'sample',
-  'header-value',
-  'header-value',
-  'header-value',
-);
-```
-
-### Output
-
-```json
-{
-  "ok": true,
-  "method": "GET",
-  "path": "/v1/orders/{orderId}",
-  "summary": "Retrieve details for specified order",
-  "data": {}
-}
-```
+All response DTOs extend `BaseResponseDto` and expose the decoded payload in `.raw`.

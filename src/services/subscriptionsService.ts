@@ -1,29 +1,105 @@
+// @ts-nocheck
 import { AbstractService } from './abstractService.js';
+import {
+  ListRequestDto,
+  ProductGroupsRequestDto,
+  CancelRequestDto,
+  GetRequestDto,
+  UpdateRequestDto,
+} from '../dto/subscriptions/requests/index.js';
+import {
+  ListResponseDto,
+  ProductGroupsResponseDto,
+  CancelResponseDto,
+  GetResponseDto,
+  UpdateResponseDto,
+} from '../dto/subscriptions/responses/index.js';
 
 export class SubscriptionsService extends AbstractService {
   static BASE_URL = 'https://api.ote-godaddy.com';
+
+  static requestDtos = {
+    list: ListRequestDto,
+    productGroups: ProductGroupsRequestDto,
+    cancel: CancelRequestDto,
+    get: GetRequestDto,
+    update: UpdateRequestDto,
+  };
+
+  static responseDtos = {
+    list: ListResponseDto,
+    productGroups: ProductGroupsResponseDto,
+    cancel: CancelResponseDto,
+    get: GetResponseDto,
+    update: UpdateResponseDto,
+  };
 
   constructor(client) {
     super(client, SubscriptionsService.BASE_URL);
   }
 
-  async list(xAppKey, xShopperId = null, xMarketId = null, productGroupKeys = null, includes = null, offset = null, limit = null, sort = null) {
-    return this.call('GET', '/v1/subscriptions', { queryParams: { productGroupKeys, includes, offset, limit, sort }, headers: { 'X-App-Key': xAppKey, 'X-Shopper-Id': xShopperId, 'X-Market-Id': xMarketId } });
+  async list(request = new ListRequestDto()) {
+    const requestDto = ListRequestDto.from(request);
+    const response = await this.call('GET', '/v1/subscriptions', {
+      pathParams: requestDto.toPathParams(),
+      queryParams: requestDto.toQueryParams(),
+      headers: requestDto.toHeaders(),
+      body: requestDto.toBody(),
+      multipart: requestDto.isMultipart()
+    });
+
+    return ListResponseDto.from(response);
   }
 
-  async productGroups(xAppKey, xShopperId = null) {
-    return this.call('GET', '/v1/subscriptions/productGroups', { headers: { 'X-App-Key': xAppKey, 'X-Shopper-Id': xShopperId } });
+  async productGroups(request = new ProductGroupsRequestDto()) {
+    const requestDto = ProductGroupsRequestDto.from(request);
+    const response = await this.call('GET', '/v1/subscriptions/productGroups', {
+      pathParams: requestDto.toPathParams(),
+      queryParams: requestDto.toQueryParams(),
+      headers: requestDto.toHeaders(),
+      body: requestDto.toBody(),
+      multipart: requestDto.isMultipart()
+    });
+
+    return ProductGroupsResponseDto.from(response);
   }
 
-  async cancel(subscriptionId, xAppKey, xShopperId = null) {
-    return this.call('DELETE', '/v1/subscriptions/{subscriptionId}', { pathParams: { subscriptionId }, headers: { 'X-App-Key': xAppKey, 'X-Shopper-Id': xShopperId } });
+  async cancel(request = new CancelRequestDto()) {
+    const requestDto = CancelRequestDto.from(request);
+    const response = await this.call('DELETE', '/v1/subscriptions/{subscriptionId}', {
+      pathParams: requestDto.toPathParams(),
+      queryParams: requestDto.toQueryParams(),
+      headers: requestDto.toHeaders(),
+      body: requestDto.toBody(),
+      multipart: requestDto.isMultipart()
+    });
+
+    return CancelResponseDto.from(response);
   }
 
-  async get(subscriptionId, xAppKey, xShopperId = null) {
-    return this.call('GET', '/v1/subscriptions/{subscriptionId}', { pathParams: { subscriptionId }, headers: { 'X-App-Key': xAppKey, 'X-Shopper-Id': xShopperId } });
+  async get(request = new GetRequestDto()) {
+    const requestDto = GetRequestDto.from(request);
+    const response = await this.call('GET', '/v1/subscriptions/{subscriptionId}', {
+      pathParams: requestDto.toPathParams(),
+      queryParams: requestDto.toQueryParams(),
+      headers: requestDto.toHeaders(),
+      body: requestDto.toBody(),
+      multipart: requestDto.isMultipart()
+    });
+
+    return GetResponseDto.from(response);
   }
 
-  async update(subscriptionId, xAppKey, subscription, xShopperId = null) {
-    return this.call('PATCH', '/v1/subscriptions/{subscriptionId}', { pathParams: { subscriptionId }, headers: { 'X-App-Key': xAppKey, 'X-Shopper-Id': xShopperId }, body: subscription });
+  async update(request = new UpdateRequestDto()) {
+    const requestDto = UpdateRequestDto.from(request);
+    const response = await this.call('PATCH', '/v1/subscriptions/{subscriptionId}', {
+      pathParams: requestDto.toPathParams(),
+      queryParams: requestDto.toQueryParams(),
+      headers: requestDto.toHeaders(),
+      body: requestDto.toBody(),
+      multipart: requestDto.isMultipart()
+    });
+
+    return UpdateResponseDto.from(response);
   }
 }

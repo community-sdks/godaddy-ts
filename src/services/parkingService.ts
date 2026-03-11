@@ -1,17 +1,54 @@
+// @ts-nocheck
 import { AbstractService } from './abstractService.js';
+import {
+  GetMetricsRequestDto,
+  GetMetricsByDomainRequestDto,
+} from '../dto/parking/requests/index.js';
+import {
+  GetMetricsResponseDto,
+  GetMetricsByDomainResponseDto,
+} from '../dto/parking/responses/index.js';
 
 export class ParkingService extends AbstractService {
   static BASE_URL = 'https://api.ote-godaddy.com';
+
+  static requestDtos = {
+    getMetrics: GetMetricsRequestDto,
+    getMetricsByDomain: GetMetricsByDomainRequestDto,
+  };
+
+  static responseDtos = {
+    getMetrics: GetMetricsResponseDto,
+    getMetricsByDomain: GetMetricsByDomainResponseDto,
+  };
 
   constructor(client) {
     super(client, ParkingService.BASE_URL);
   }
 
-  async getMetrics(customerId, periodStartPtz = null, periodEndPtz = null, limit = null, offset = null, xRequestId = null) {
-    return this.call('GET', '/v1/customers/{customerId}/parking/metrics', { pathParams: { customerId }, queryParams: { periodStartPtz, periodEndPtz, limit, offset }, headers: { 'X-Request-Id': xRequestId } });
+  async getMetrics(request = new GetMetricsRequestDto()) {
+    const requestDto = GetMetricsRequestDto.from(request);
+    const response = await this.call('GET', '/v1/customers/{customerId}/parking/metrics', {
+      pathParams: requestDto.toPathParams(),
+      queryParams: requestDto.toQueryParams(),
+      headers: requestDto.toHeaders(),
+      body: requestDto.toBody(),
+      multipart: requestDto.isMultipart()
+    });
+
+    return GetMetricsResponseDto.from(response);
   }
 
-  async getMetricsByDomain(customerId, startDate, endDate, domains = null, domainLike = null, portfolioId = null, limit = null, offset = null, xRequestId = null) {
-    return this.call('GET', '/v1/customers/{customerId}/parking/metricsByDomain', { pathParams: { customerId }, queryParams: { startDate, endDate, domains, domainLike, portfolioId, limit, offset }, headers: { 'X-Request-Id': xRequestId } });
+  async getMetricsByDomain(request = new GetMetricsByDomainRequestDto()) {
+    const requestDto = GetMetricsByDomainRequestDto.from(request);
+    const response = await this.call('GET', '/v1/customers/{customerId}/parking/metricsByDomain', {
+      pathParams: requestDto.toPathParams(),
+      queryParams: requestDto.toQueryParams(),
+      headers: requestDto.toHeaders(),
+      body: requestDto.toBody(),
+      multipart: requestDto.isMultipart()
+    });
+
+    return GetMetricsByDomainResponseDto.from(response);
   }
 }
